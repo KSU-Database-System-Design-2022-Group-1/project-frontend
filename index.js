@@ -1,6 +1,6 @@
-'use strict';
+// CommonJS module import using ES6 syntax
+import express from 'express';
 
-var express = require('express');
 var app = express();
 
 const port = 3000;
