@@ -5,9 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>KStores Home</title>
+    <title>KStores - View</title>
 </head>
 <body>
     Item
+    <p id="itemDisplay">Test</p>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        document.getElementById("itemDisplay").innerHTML= urlParams.get('name');
+    </script>
 </body>
 </html>
