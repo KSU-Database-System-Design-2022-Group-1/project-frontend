@@ -4,7 +4,8 @@
   "description": "The front end is served using a Node.JS server with Axios routing.   To launch said Node server, run:   ```npm start```",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
