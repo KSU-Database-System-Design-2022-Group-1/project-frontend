@@ -1,3 +1,10 @@
 body {
-    background-color: slateblue;
+    background-color: #1e3a8a;
+    margin:0
+}
+
+.header {
+    background-color: #2563eb;
+    height:100px;
+    display:flex;
 }
