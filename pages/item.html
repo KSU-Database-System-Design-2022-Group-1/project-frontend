@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <title>KStores - View</title>
+    <script>
+        if (document.cookie.indexOf("TestCookieForAuth") == -1) {
+            location.href = "/login"
+        }
+    </script>
 </head>
 <body>
     Item
