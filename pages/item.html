@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/css/styles.css">
     <title>KStores - View</title>
     <script>
+        // Checks if the user has visited the login page, if not
+        // it redirects them there.
         if (document.cookie.indexOf("TestCookieForAuth") == -1) {
             location.href = "/login"
         }
