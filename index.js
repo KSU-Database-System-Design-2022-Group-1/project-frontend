@@ -1,23 +1,13 @@
-const path = require('path');
-const express = require('express')
+var express = require('express');
+var app = express();
 
-const app = express()
 const port = 3000
 
-let userLoggedIn = false;
+app.use(express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => {
-    if(userLoggedIn)
-        res.sendFile(path.join(__dirname, '/pages/home.html'))
-    else
-        res.redirect('/login')
-})
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/pages/home.html')
+});
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages/login.html'))
-    userLoggedIn = true;
-})
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(port);
