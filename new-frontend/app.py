@@ -21,7 +21,7 @@ def orders():
 
 @app.route("/account/settings")
 def settings():
-    return render_template('account_settings.html')
+    return render_template('account_settings.html', data={"name":"Bailey Wimer"})
 
 @app.route("/catalog")
 def catalog():
