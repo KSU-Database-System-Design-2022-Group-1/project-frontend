@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
         <!-- Bootstrap inclusion -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <title>KStores Home</title>
@@ -42,7 +43,7 @@
 	<script>
 		function login(){
 		let node = document.createElement("p")
-		fetch("http://localhost:5000/login").then(res => (console.log(res)))
+		fetch("http://localhost:3000/login").then(res => (console.log(res)))
 		document.getElementById("paragraph").innerHTML = `Hello ${document.getElementById("login")["email"].value}`;
 		let parent = document.getElementById("paragraph");
 		parent.appendChild(node);
@@ -52,7 +53,7 @@
 		function handleForm(event) { 
 			event.preventDefault(); 
 			let node = document.createElement("p")
-			fetch("http://localhost:5000/login").then(res => (console.log(res)))
+			fetch("http://localhost:3000/login").then(res => (console.log(res)))
 			document.getElementById("paragraph").innerHTML = `Hello ${form["email"].value}`;
 			let parent = document.getElementById("paragraph");
 			parent.appendChild(node);

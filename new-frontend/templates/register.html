@@ -7,43 +7,295 @@
     <link rel="stylesheet" href="/css/styles.css">
         <!-- Bootstrap inclusion -->
         <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <title>KStores Home</title>
+    <script>
+        // When a user visits the login page, their cookie is set to valid
+        // which means that they are logged in. This is temporary just to
+        // demonstrate how the login may end up working.
+        document.cookie = "TestCookieForAuth=Valid;"
+    </script>
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/">KStores</a>
-          </div>
-      
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-              <li><a href="/catalog">Catalog</a></li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/cart">Cart</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/account/settings">Settings</a></li>
-                  <li><a href="#">Order History</a></li>
-                  <li><a href="#">Signout</a></li>
-                  <li role="separator" class="divider"></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-    Register
+    
+	  <div class="login-form">
+		<form id="register-form">
+		  <h1>KStores</h1>
+		  <h2>Register an Account</h1>
+		  <div class="content">
+			<div class="input-field">
+			  <input type="email" placeholder="Email" autocomplete="nope" name="email">
+			</div>
+			<div class="input-field">
+			  <input type="password" placeholder="Password" autocomplete="new-password" name="password">
+			</div>
+      <div class="input-field">
+			  <input type="text" placeholder="Phone Number" name="phone">
+			</div>
+      <h3>Name</h3>
+      <div class="input-field">
+			  <input type="text" placeholder="First Name" name="fname">
+        <input type="text" placeholder="Middle Name" name="mname">
+        <input type="text" placeholder="Last Name" name="lname">
+			</div>
+      <h3>Shipping Address</h3>
+      <div class="input-field">
+			  <input type="text" placeholder="Address" name="s_addr">
+        <input type="text" placeholder="City" name="s_city">
+        <label for="inputState5">State</label>
+          <select id="inputState5" class="form-control" name="s_state">
+            <option selected="">AL</option>
+            <option>AK</option>
+            <option>AZ</option>
+            <option>AR</option>
+            <option>CA</option>
+            <option>CO</option>
+            <option>CT</option>
+            <option>DE</option>
+            <option>FL</option>
+            <option>GA</option>
+            <option>HI</option>
+            <option>ID</option>
+            <option>IL</option>
+            <option>IN</option>
+            <option>IA</option>
+            <option>KS</option>
+            <option>KY</option>
+            <option>LA</option>
+            <option>ME</option>
+            <option>MD</option>
+            <option>MA</option>
+            <option>MI</option>
+            <option>MN</option>
+            <option>MS</option>
+            <option>MO</option>
+            <option>MT</option>
+            <option>NE</option>
+            <option>NV</option>
+            <option>NH</option>
+            <option>NJ</option>
+            <option>NM</option>
+            <option>NY</option>
+            <option>NC</option>
+            <option>ND</option>
+            <option>OH</option>
+            <option>OK</option>
+            <option>OR</option>
+            <option>PA</option>
+            <option>RI</option>
+            <option>SC</option>
+            <option>SD</option>
+            <option>TN</option>
+            <option>TX</option>
+            <option>UT</option>
+            <option>VT</option>
+            <option>VA</option>
+            <option>WA</option>
+            <option>WV</option>
+            <option>WI</option>
+            <option>WY</option>
+          </select>
+        <input type="text" placeholder="Zip" name="s_state">
+			</div>
+      <h3>Billing Address</h3>
+      <div class="input-field">
+			  <input type="text" placeholder="Address" name="b_addr">
+        <input type="text" placeholder="City" name="b_city">
+        <label for="inputState5">State</label>
+          <select id="inputState5" class="form-control" name="b_state">
+            <option selected="">AL</option>
+            <option>AK</option>
+            <option>AZ</option>
+            <option>AR</option>
+            <option>CA</option>
+            <option>CO</option>
+            <option>CT</option>
+            <option>DE</option>
+            <option>FL</option>
+            <option>GA</option>
+            <option>HI</option>
+            <option>ID</option>
+            <option>IL</option>
+            <option>IN</option>
+            <option>IA</option>
+            <option>KS</option>
+            <option>KY</option>
+            <option>LA</option>
+            <option>ME</option>
+            <option>MD</option>
+            <option>MA</option>
+            <option>MI</option>
+            <option>MN</option>
+            <option>MS</option>
+            <option>MO</option>
+            <option>MT</option>
+            <option>NE</option>
+            <option>NV</option>
+            <option>NH</option>
+            <option>NJ</option>
+            <option>NM</option>
+            <option>NY</option>
+            <option>NC</option>
+            <option>ND</option>
+            <option>OH</option>
+            <option>OK</option>
+            <option>OR</option>
+            <option>PA</option>
+            <option>RI</option>
+            <option>SC</option>
+            <option>SD</option>
+            <option>TN</option>
+            <option>TX</option>
+            <option>UT</option>
+            <option>VT</option>
+            <option>VA</option>
+            <option>WA</option>
+            <option>WV</option>
+            <option>WI</option>
+            <option>WY</option>
+          </select>
+        <input type="text" placeholder="Zip" name="b_state">
+			</div>
+		  <div class="action">
+			<button onclick="back_to_login()">Back to Login</button>
+			<button>Register</button>
+		  </div>
+		</form>
+	  </div>
+
+	<p id="paragraph"></p>
+
+	<script>
+		var form = document.getElementById("register-form")
+		function handleForm(event) { 
+			event.preventDefault(); 
+			let node = document.createElement("p")
+			fetch("http://localhost:5000/login").then(res => (console.log(res)))
+			document.getElementById("paragraph").innerHTML = `Hello ${form["email"].value}`;
+			let parent = document.getElementById("paragraph");
+			parent.appendChild(node);
+		} 
+		form.addEventListener('submit', handleForm);
+
+		function back_to_login(){
+			window.location.href = `/login`;
+		}
+	</script>
+
+	<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: #f1f2f7;
+  /* font-family: 'Rubik', sans-serif; */
+}
+
+.login-form {
+  background: #fff;
+  width: 500px;
+  margin: 65px auto;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+}
+.login-form h1 {
+  padding: 35px 35px 0 35px;
+  font-weight: 300;
+}
+.login-form h2 {
+  padding: 35px 35px 0 35px;
+  font-weight: 300;
+}
+.login-form .content {
+  padding: 35px;
+  text-align: center;
+}
+.login-form .input-field {
+  padding: 12px 5px;
+}
+.login-form .input-field input {
+  font-size: 16px;
+  display: block;
+  font-family: 'Rubik', sans-serif;
+  width: 100%;
+  padding: 10px 1px;
+  border: 0;
+  border-bottom: 1px solid #747474;
+  outline: none;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+.login-form .input-field input::-webkit-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::-moz-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input:-ms-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::-ms-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input:focus {
+  border-color: #222;
+}
+.login-form a.link {
+  text-decoration: none;
+  color: #747474;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: 20px;
+}
+.login-form .action {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+}
+.login-form .action button {
+  width: 100%;
+  border: none;
+  padding: 18px;
+  font-family: 'Rubik', sans-serif;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #e8e9ec;
+  color: #777;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+  letter-spacing: 0.2px;
+  outline: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.login-form .action button:hover {
+  background: #d8d8d8;
+}
+.login-form .action button:nth-child(2) {
+  background: #2d3b55;
+  color: #fff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 4px;
+}
+.login-form .action button:nth-child(2):hover {
+  background: #3c4d6d;
+}
+
+	</style>
 </body>
 </html>
