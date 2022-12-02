@@ -13,7 +13,7 @@
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>KStores Home</title>
   </head>
-  <body>
+  <body>    
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -47,23 +47,16 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/cart">Cart</a></li>
+            <li><a href="/login">Login</a></li>
             <li class="dropdown">
-              <a
-                href="#"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                >Account <span class="caret"></span
-              ></a>
-              <ul class="dropdown-menu">
-                <li><a href="/account/settings">Settings</a></li>
-                <li><a href="#">Order History</a></li>
-                <li><a href="#">Signout</a></li>
-                <li role="separator" class="divider"></li>
-              </ul>
-            </li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Settings</a></li>
+                  <li><a href="#">Order History</a></li>
+                  <li><a href="#">Signout</a></li>
+                  <li role="separator" class="divider"></li>
+                </ul>
+              </li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -77,6 +70,8 @@
         window.location.href = `/catalog?search=${query}`;
       }
     </script>
+
+
 
     <div class="p-5 text-center bg-light" style="margin-top: 58px">
       <h1 class="mb-3">Kent Shirt</h1>
