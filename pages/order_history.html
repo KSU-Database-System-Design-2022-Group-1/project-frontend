@@ -4,46 +4,120 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
-        <!-- Bootstrap inclusion -->
-        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>KStores Home</title>
+
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/">KStores</a>
-          </div>
-      
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-              <li><a href="/catalog">Catalog</a></li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center row">
+          <div class="col-md-10">
+              <div class="rounded">
+                  <div class="table-responsive table-borderless">
+                      <table class="styled-table center">
+                          <thead>
+                              <tr class="active-row">
+                                  <th style="padding: 7px">Order #</th>
+                                  <th style="padding: 7px">Company name</th>
+                                  <th style="padding: 7px">Status</th>
+                                  <th style="padding: 7px">Total</th>
+                                  <th style="padding: 7px">Created</th>
+                                  <th style="padding: 7px">View Order</th>
+                              </tr>
+                          </thead>
+                          <tbody class="table-body">
+                              <tr class="cell-1">
+                                  <td style="padding: 7px">#SO-13487</td>
+                                  <td style="padding: 7px">Gasper Antunes</td>
+                                  <td style="padding: 7px"><span class="badge badge-success">Fullfilled</span></td>
+                                  <td style="padding: 7px">$2674.00</td>
+                                  <td style="padding: 7px">Today</td>
+                                  <td style="padding: 7px"><button type="button">Details</button></td>
+                              </tr>
+                              <tr class="cell-1">
+                                  <td style="padding: 7px">#SO-13453</td>
+                                  <td style="padding: 7px">Aartsen van</td>
+                                  <td style="padding: 7px"><span class="badge badge-info">Confirmed</span></td>
+                                  <td style="padding: 7px">$3454.00</td>
+                                  <td style="padding: 7px">Yesterday</td>
+                                  <td style="padding: 7px"><button type="button">Details</button></td>
+                              </tr>
+                              <tr class="cell-1">
+                                  <td style="padding: 7px">#SO-13498</td>
+                                  <td style="padding: 7px">Trashes Habard</td>
+                                  <td style="padding: 7px"><span class="badge badge-danger">Partially shipped</span></td>
+                                  <td style="padding: 7px">$6274.00</td>
+                                  <td style="padding: 7px">May 12,2020</td>
+                                  <td style="padding: 7px"><button type="button">Details</button></td>
+                              </tr>
+                              <tr class="cell-1">
+                                  <td style="padding: 7px">#SO-16499</td>
+                                  <td style="padding: 7px">Samban Hubart</td>
+                                  <td style="padding: 7px"><span class="badge badge-success">Fullfilled</span></td>
+                                  <td style="padding: 7px">$6375.00</td>
+                                  <td style="padding: 7px">May 11,2020</td>
+                                  <td style="padding: 7px"><button type="button">Details</button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
               </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/cart">Cart</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/account/settings">Settings</a></li>
-                  <li><a href="#">Order History</a></li>
-                  <li><a href="#">Signout</a></li>
-                  <li role="separator" class="divider"></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-    Orders
+          </div>
+      </div>
+  </div>
 </body>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Assistant');
+body {
+  background: #eee;
+  font-family: Assistant, sans-serif;
+}
+
+.cell-1 {
+  border-collapse: separate;
+  border-spacing: 0 4em;
+  background: #fff;
+  border-bottom: 5px solid transparent;
+  /*background-color: gold;*/
+}
+
+thead {
+  background: #dddcdc;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.2em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+
+</style>
 </html>
