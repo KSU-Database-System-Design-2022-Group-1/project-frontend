@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+import requests
+import json
 
 app = Flask(__name__)
 
@@ -29,7 +31,15 @@ def item():
 
 @app.route("/cart")
 def cart():
-    return render_template('cart.html', cart=[1, 2, 3, 4, 5])
+    r = requests.get("localhost:3000/cart/info", data={"customer": 1})
+    cart_info = json.loads(r)
+    cart = []
+    cart_info = {}
+    return render_template('cart.html', cart=cart, cart_info=cart_info)
+
+@app.route("/catalog/item/image")
+def image():
+    return
 
 if __name__ == '__main__':
     app.run()
