@@ -31,10 +31,11 @@ def item():
 
 @app.route("/cart")
 def cart():
-    r = requests.get("localhost:3000/cart/info", data={"customer": 1})
-    cart_info = json.loads(r)
-    cart = []
-    cart_info = {}
+    r = requests.get("http://localhost:3000/cart/info", data={"customer": 1})
+    cart_info = json.loads(r.text)
+    cart_info['weight'] = round(cart_info['weight'], 2)
+    r = requests.get("http://localhost:3000/cart/list", data={"customer": 1})
+    cart = json.loads(r.text)["items"]
     return render_template('cart.html', cart=cart, cart_info=cart_info)
 
 @app.route("/catalog/item/image")
