@@ -35,7 +35,8 @@ def cart():
     cart_info = json.loads(r.text)
     cart_info['price'] = round(cart_info['price'], 2)
     cart_info['weight'] = round(cart_info['weight'], 2)
-    cart = []
+    r = requests.get("http://localhost:3000/cart/list", data={"customer": 1})
+    cart = json.loads(r.text)
     return render_template('cart.html', cart=cart, cart_info=cart_info)
 
 @app.route("/catalog/item/image")
