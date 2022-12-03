@@ -120,66 +120,7 @@
                 </ul>
             </div>
         </section>
-        <section class="panel">
-            <header class="panel-heading">
-                Price Range
-            </header>
-            <div class="wrapper">
-                <div class="price-input">
-                    <div class="field">
-                    <span>Min</span>
-                    <input type="number" class="input-min" value="2500">
-                    </div>
-                    <div class="field">
-                    <span>Max</span>
-                    <input type="number" class="input-max" value="7500">
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body sliders">
-                <div id="slider-range" class="slider"></div>
-                <div class="slider-info">
-                    <span id="slider-range-amount"></span>
-                </div>
-            </div>
-            <div class="shop__filter">
-                <!-- Price -->
-                <h3 class="headline">
-                  <span>Price</span>
-                </h3>
-                <div class="radio">
-                  <input type="radio" name="shop-filter__price" id="shop-filter-price_1" value="" checked="">
-                  <label for="shop-filter-price_1">Under $25</label>
-                </div>
-                <div class="radio">
-                  <input type="radio" name="shop-filter__price" id="shop-filter-price_2" value="">
-                  <label for="shop-filter-price_2">$25 to $50</label>
-                </div>
-                <div class="radio">
-                  <input type="radio" name="shop-filter__price" id="shop-filter-price_3" value="">
-                  <label for="shop-filter-price_3">$50 to $100</label>
-                </div>
-                <div class="radio">
-                  <input type="radio" name="shop-filter__price" id="shop-filter-price_4" value="specify">
-                  <label for="shop-filter-price_4">Other (specify)</label>
-                </div>
-                <div class="form-group shop-filter__price">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <label for="shop-filter-price_from" class="sr-only"></label>
-                      <input id="shop-filter-price_from" type="number" min="0" class="form-control" placeholder="From" disabled="">
-                    </div>
-                    <div class="col-xs-4">
-                      <label for="shop-filter-price_to" class="sr-only"></label>
-                      <input id="shop-filter-price_to" type="number" min="0" class="form-control" placeholder="To" disabled="">
-                    </div>
-                    <div class="col-xs-4">
-                      <button type="submit" class="btn btn-block btn-default" disabled="">Go</button>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </section>
+        
         <section class="panel">
             <header class="panel-heading">
                 Filter
@@ -217,9 +158,46 @@
                         </select>
                         <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Small</span></span>
                     </div>
+
+                    <div class="form-group">
+                        <label>Price Range</label>
+                        <div class="radio" style = "position:relative; left:25px;">
+                          <input type="radio" name="shop-filter__price" id="shop-filter-price_1" value="" checked="">
+                          <label for="shop-filter-price_1">Under $25</label>
+                        </div>
+                        <div class="radio" style = "position:relative; left:25px;">
+                          <input type="radio" name="shop-filter__price" id="shop-filter-price_2" value="">
+                          <label for="shop-filter-price_2">$25 to $50</label>
+                        </div>
+                        <div class="radio" style = "position:relative; left:25px;">
+                          <input type="radio" name="shop-filter__price" id="shop-filter-price_3" value="">
+                          <label for="shop-filter-price_3">$50 to $100</label>
+                        </div>
+                        <div class="radio" style = "position:relative; left:25px;">
+                          <input type="radio" name="shop-filter__price" id="shop-filter-price_4" value="specify">
+                          <label for="shop-filter-price_4">Other (specify)</label>
+                        </div>
+                        <div class="form-group shop-filter__price">
+                          <div class="row">
+                            <div class="col-xs-4">
+                              <label for="shop-filter-price_from" class="sr-only"></label>
+                              <input id="shop-filter-price_from" type="number" min="0" class="form-control" placeholder="From" style="width: 80px;">
+                            </div>
+                            <div class="col-xs-4">
+                              <label for="shop-filter-price_to" class="sr-only"></label>
+                              <input id="shop-filter-price_to" type="number" min="0" class="form-control" placeholder="To" style="width: 80px;">
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+
                     <button class="btn btn-primary" type="submit">Filter</button>
                 </form>
             </div>
+        
+
+            
         </section>
     </div>
     <div class="col-md-9">
@@ -265,6 +243,7 @@
       window.location.href = `/catalog?search=${query}`;
     }
   </script>
+
 <style type="text/css">
 body{
 background:#f1f2f7;
@@ -290,7 +269,6 @@ background:#f1f2f7;
     margin-top: 0;
     font-family: 'Open Sans', sans-serif;
 }
-
 
 /*product list*/
 
