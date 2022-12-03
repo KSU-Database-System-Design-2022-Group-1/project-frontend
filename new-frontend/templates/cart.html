@@ -90,7 +90,7 @@
                                         </figure>
                                     </td>
                                     <td> <select class="form-control">
-                                        {% for x in range(1, item["stock"]) %}
+                                        {% for x in range(1, item["stock"] + 1) %}
                                             {% if x == item["quantity"]%}
                                             <option selected>{{x}}</option>
                                             {% else %}

@@ -14,7 +14,9 @@ def register():
 
 @app.route("/account/orders")
 def orders():
-    return render_template('order_history.html')
+    r = requests.get("http://localhost:3000/order/list", data={"customer": 1})
+    orders = json.loads(r.text)["orders"]
+    return render_template('order_history.html', orders=orders)
 
 @app.route("/account/settings")
 def settings():

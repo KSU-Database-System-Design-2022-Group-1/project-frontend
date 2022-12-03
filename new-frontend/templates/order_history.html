@@ -75,7 +75,6 @@ function search() {
                           <thead>
                               <tr class="active-row">
                                   <th style="padding: 7px">Order #</th>
-                                  <th style="padding: 7px">Company name</th>
                                   <th style="padding: 7px">Status</th>
                                   <th style="padding: 7px">Total</th>
                                   <th style="padding: 7px">Created</th>
@@ -83,38 +82,15 @@ function search() {
                               </tr>
                           </thead>
                           <tbody class="table-body">
+                            {% for order in orders %}
                               <tr class="cell-1">
-                                  <td style="padding: 7px">#SO-13487</td>
-                                  <td style="padding: 7px">Gasper Antunes</td>
-                                  <td style="padding: 7px"><span class="badge badge-success">Fullfilled</span></td>
-                                  <td style="padding: 7px">$2674.00</td>
-                                  <td style="padding: 7px">Today</td>
+                                  <td style="padding: 7px">{{order["order"]}}</td>
+                                  <td style="padding: 7px"><span class="badge badge-success">{{order["status"]}}</span></td>
+                                  <td style="padding: 7px">${{order["price"]}}</td>
+                                  <td style="padding: 7px">{{order["timestamp"]}}</td>
                                   <td style="padding: 7px"><button type="button">Details</button></td>
                               </tr>
-                              <tr class="cell-1">
-                                  <td style="padding: 7px">#SO-13453</td>
-                                  <td style="padding: 7px">Aartsen van</td>
-                                  <td style="padding: 7px"><span class="badge badge-info">Confirmed</span></td>
-                                  <td style="padding: 7px">$3454.00</td>
-                                  <td style="padding: 7px">Yesterday</td>
-                                  <td style="padding: 7px"><button type="button">Details</button></td>
-                              </tr>
-                              <tr class="cell-1">
-                                  <td style="padding: 7px">#SO-13498</td>
-                                  <td style="padding: 7px">Trashes Habard</td>
-                                  <td style="padding: 7px"><span class="badge badge-danger">Partially shipped</span></td>
-                                  <td style="padding: 7px">$6274.00</td>
-                                  <td style="padding: 7px">May 12,2020</td>
-                                  <td style="padding: 7px"><button type="button">Details</button></td>
-                              </tr>
-                              <tr class="cell-1">
-                                  <td style="padding: 7px">#SO-16499</td>
-                                  <td style="padding: 7px">Samban Hubart</td>
-                                  <td style="padding: 7px"><span class="badge badge-success">Fullfilled</span></td>
-                                  <td style="padding: 7px">$6375.00</td>
-                                  <td style="padding: 7px">May 11,2020</td>
-                                  <td style="padding: 7px"><button type="button">Details</button></td>
-                              </tr>
+                            {% endfor %}
                           </tbody>
                       </table>
                   </div>
