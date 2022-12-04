@@ -1,242 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link
+      href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>KStores - View</title>
-    
-</head>
+  </head>
 
-<body>
-  <main class="container">
- 
-    <!-- Left Column / Headphones Image -->
-    <div class="left-column">
-      <img data-image="black" src="images/black.png" alt="">
-      <img data-image="blue" src="images/blue.png" alt="">
-      <img data-image="red" class="active" src="images/red.png" alt="">
-    </div>
-   
-   
-    <!-- Right Column -->
-    <div class="right-column">
-   
-      <!-- Product Description -->
-      <div class="product-description">
-        <span>Headphones</span>
-        <h1>Beats EP</h1>
-        <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
-      </div>
-   
-      <!-- Product Configuration -->
-      <div class="product-configuration">
-   
-        <!-- Product Color -->
-        <div class="product-color">
-          <span>Color</span>
-   
-          <div class="color-choose">
-            <div>
-              <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-              <label for="red"><span></span></label>
-            </div>
-            <div>
-              <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-              <label for="blue"><span></span></label>
-            </div>
-            <div>
-              <input data-image="black" type="radio" id="black" name="color" value="black">
-              <label for="black"><span></span></label>
-            </div>
-          </div>
-   
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">KStores</a>
         </div>
-   
-        <!-- Cable Configuration -->
-        <div class="cable-config">
-          <span>Cable configuration</span>
-   
-          <div class="cable-choose">
-            <button>Straight</button>
-            <button>Coiled</button>
-            <button>Long-coiled</button>
-          </div>
-   
-          <a href="#">How to configurate your headphones</a>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/catalog">Catalog</a></li>
+          </ul>
+          <form
+            class="navbar-form navbar-left"
+            role="search"
+            action="JavaScript:search()"
+            id="searchForm"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search"
+                name="searchBar"
+              />
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/cart">Cart</a></li>
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Account <span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu">
+                <li><a href="/account/settings">Settings</a></li>
+                <li><a href="/account/orders">Order History</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/signout">Sign out</a></li>
+                <li><a href="/login">Sign in</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <script>
+      function search() {
+        let query = document.getElementById("searchForm")["searchBar"].value;
+        window.location.href = `/catalog?search=${query}`;
+      }
+    </script>
+
+    <main class="container">
+      <!-- Left Column / Headphones Image -->
+      <div class="left-column">
+        <img data-image="black" src="images/black.png" alt="" />
+        <img data-image="blue" src="images/blue.png" alt="" />
+        <img data-image="red" class="active" src="images/red.png" alt="" />
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Product Description -->
+        <div class="product-description">
+          <span>{{item["category"]}}</span>
+          <h1>{{item["name"]}}</h1>
+          <p>{{item["description"]}}</p>
+          <h2>${{item["price"]}} each</h2>
+        </div>
+
+        <!-- Product Configuration -->
+        <div class="product-configuration">
+          <h3>Variation<br /></h3>
+          <select>
+            {% for variant in item["variants"] %}
+            <option>{{variant["color"]}}, {{variant["size"]}}</option>
+            {% endfor %}
+          </select>
+
+          <hr />
+          <h3>Quantity<br /></h3>
+          <select>
+            {%for x in range(1, item["stock"] + 1)%}
+            <option>{{x}}</option>
+            {% endfor %}
+          </select>
+          <hr />
+        </div>
+
+        <!-- Product Pricing -->
+        <div class="product-price">
+          <span>148$</span>
+          <a href="#" class="cart-btn">Add to cart</a>
         </div>
       </div>
-   
-      <!-- Product Pricing -->
-      <div class="product-price">
-        <span>148$</span>
-        <a href="#" class="cart-btn">Add to cart</a>
-      </div>
-    </div>
-  </main>
+    </main>
+  </body>
 
-</body>
+  <style>
+    /* Basic Styling */
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      background: #f1f2f7;
+    }
 
-<style>
- /* Basic Styling */
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-}
- 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 15px;
-  display: flex;
-}
+    hr {
+      background-color: #ced2e4;
+      height: 1px;
+      border: none;
+    }
 
-/* Columns */
-.left-column {
-  width: 65%;
-  position: relative;
-}
- 
-.right-column {
-  width: 35%;
-  margin-top: 60px;
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px;
+      display: flex;
+    }
 
-/* Left Column */
-.left-column img {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
- 
-.left-column img.active {
-  opacity: 1;
-}
+    /* Columns */
+    .left-column {
+      width: 65%;
+      position: relative;
+    }
 
-.product-description {
-  border-bottom: 1px solid #E1E8EE;
-  margin-bottom: 20px;
-}
-.product-description span {
-  font-size: 12px;
-  color: #358ED7;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.product-description h1 {
-  font-weight: 300;
-  font-size: 52px;
-  color: #43484D;
-  letter-spacing: -2px;
-}
-.product-description p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #86939E;
-  line-height: 24px;
-}.product-description {
-  border-bottom: 1px solid #E1E8EE;
-  margin-bottom: 20px;
-}
-.product-description span {
-  font-size: 12px;
-  color: #358ED7;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.product-description h1 {
-  font-weight: 300;
-  font-size: 52px;
-  color: #43484D;
-  letter-spacing: -2px;
-}
-.product-description p {
-  font-size: 16px;
-  font-weight: 300;
-  color: #86939E;
-  line-height: 24px;
-}
+    .right-column {
+      width: 35%;
+      margin-top: 60px;
+    }
 
+    /* Left Column */
+    .left-column img {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
 
-/* Cable Configuration */
-.cable-choose {
-  margin-bottom: 20px;
-}
- 
-.cable-choose button {
-  border: 2px solid #E1E8EE;
-  border-radius: 6px;
-  padding: 13px 20px;
-  font-size: 14px;
-  color: #5E6977;
-  background-color: #fff;
-  cursor: pointer;
-  transition: all .5s;
-}
- 
-.cable-choose button:hover,
-.cable-choose button:active,
-.cable-choose button:focus {
-  border: 2px solid #86939E;
-  outline: none;
-}
- 
-.cable-config {
-  border-bottom: 1px solid #E1E8EE;
-  margin-bottom: 20px;
-}
- 
-.cable-config a {
-  color: #358ED7;
-  text-decoration: none;
-  font-size: 12px;
-  position: relative;
-  margin: 10px 0;
-  display: inline-block;
-}
+    .left-column img.active {
+      opacity: 1;
+    }
 
+    .product-description {
+      border-bottom: 1px solid #ced2e4;
+      margin-bottom: 20px;
+    }
+    .product-description span {
+      font-size: 12px;
+      color: #358ed7;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .product-description h1 {
+      font-weight: 300;
+      font-size: 52px;
+      color: #43484d;
+      letter-spacing: -2px;
+    }
+    .product-description p {
+      font-size: 16px;
+      font-weight: 300;
+      color: #86939e;
+      line-height: 24px;
+    }
+    .product-description span {
+      font-size: 12px;
+      color: #358ed7;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .product-description h1 {
+      font-weight: 300;
+      font-size: 52px;
+      color: #43484d;
+      letter-spacing: -2px;
+    }
+    .product-description p {
+      font-size: 16px;
+      font-weight: 300;
+      color: #86939e;
+      line-height: 24px;
+    }
 
+    /* Cable Configuration */
+    .cable-choose {
+      margin-bottom: 20px;
+    }
 
+    .cable-choose button {
+      border: 2px solid #e1e8ee;
+      border-radius: 6px;
+      padding: 13px 20px;
+      font-size: 14px;
+      color: #5e6977;
+      background-color: #fff;
+      cursor: pointer;
+      transition: all 0.5s;
+    }
 
+    .cable-choose button:hover,
+    .cable-choose button:active,
+    .cable-choose button:focus {
+      border: 2px solid #86939e;
+      outline: none;
+    }
 
+    .cable-config {
+      border-bottom: 1px solid #e1e8ee;
+      margin-bottom: 20px;
+    }
 
+    .cable-config a {
+      color: #358ed7;
+      text-decoration: none;
+      font-size: 12px;
+      position: relative;
+      margin: 10px 0;
+      display: inline-block;
+    }
 
-.product-price {
-  display: flex;
-  align-items: center;
-}
- 
-.product-price span {
-  font-size: 26px;
-  font-weight: 300;
-  color: #43474D;
-  margin-right: 20px;
-}
- 
-.cart-btn {
-  display: inline-block;
-  background-color: #7DC855;
-  border-radius: 6px;
-  font-size: 16px;
-  color: #FFFFFF;
-  text-decoration: none;
-  padding: 12px 30px;
-  transition: all .5s;
-}
-.cart-btn:hover {
-  background-color: #64af3d;
-}
+    .product-price {
+      display: flex;
+      align-items: center;
+    }
 
+    .product-price span {
+      font-size: 26px;
+      font-weight: 300;
+      color: #43474d;
+      margin-right: 20px;
+    }
 
-</style>
+    .cart-btn {
+      display: inline-block;
+      background-color: #7dc855;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px 30px;
+      transition: all 0.5s;
+    }
+    .cart-btn:hover {
+      background-color: #64af3d;
+    }
+  </style>
 </html>

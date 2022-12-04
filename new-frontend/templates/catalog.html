@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
     <title>Shop product list - Bootdey.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link
+      href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">KStores</a>
-          </div>
-      
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/catalog">Catalog</a></li>
-            </ul>
-            <form
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">KStores</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/catalog">Catalog</a></li>
+          </ul>
+          <form
             class="navbar-form navbar-left"
             role="search"
             action="JavaScript:search()"
@@ -47,44 +58,52 @@
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/cart">Cart</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/account/settings">Settings</a></li>
-                  <li><a href="/account/orders">Order History</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="/signout">Sign out</a></li>
-                  <li><a href="/login">Sign in</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
-<div class="container bootdey">
-    <div class="col-md-3">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/cart">Cart</a></li>
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Account <span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu">
+                <li><a href="/account/settings">Settings</a></li>
+                <li><a href="/account/orders">Order History</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/signout">Sign out</a></li>
+                <li><a href="/login">Sign in</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <div class="container bootdey">
+      <div class="col-md-3">
         <!-- <section class="panel">
             <div class="panel-body">
                 <input type="text" placeholder="Keyword Search" class="form-control" />
             </div>
         </section> -->
         <section class="panel">
-            <header class="panel-heading">
-                Category
-            </header>
-            <div class="panel-body">
-                <ul class="nav prod-cat">
-                    <li>
-                        <a href="/catalog?category=dress"> Dress</a>
-                        <!-- <ul class="nav">
+          <header class="panel-heading">Category</header>
+          <div class="panel-body">
+            <ul class="nav prod-cat">
+              <li>
+                <a href="/catalog?category=dress"> Dress</a>
+                <!-- <ul class="nav">
                             <li class="active"><a href="#">- Shirt</a></li>
                             <li><a href="#">- Pant</a></li>
                             <li><a href="#">- Shoes</a></li>
                         </ul> -->
-                    </li>
-                    <!-- <li>
+              </li>
+              <!-- <li>
                         <a href="#"><i class="fa fa-angle-right"></i> Bags &amp; Purses</a>
                     </li>
                     <li>
@@ -96,97 +115,134 @@
                     <li>
                         <a href="#"><i class="fa fa-angle-right"></i> Jewellery</a>
                     </li> -->
-                    <li>
-                        <a href="/catalog?category=shirt"> Shirts</a>
-                    </li>
-                    <li>
-                        <a href="/catalog?category=pants"> Pants</a>
-                    </li>
-                    <li>
-                        <a href="/catalog?category=shoes"> Shoes</a>
-                    </li>
-                    <li>
-                        <a href="/catalog?category=hat"> Hats</a>
-                    </li>
-                    <li>
-                        <a href="/catalog?category=bag"> Bags &amp; Purses</a>
-                    </li>
-                    <li>
-                        <a href="/catalog?category=coat"> Coat &amp; Jacket</a>
-                    </li>
-                    <li>
-                        <a href="/catalog?category=jewellery"> Jewellery</a>
-                    </li>
-                </ul>
-            </div>
+              <li>
+                <a href="/catalog?category=shirt"> Shirts</a>
+              </li>
+              <li>
+                <a href="/catalog?category=pants"> Pants</a>
+              </li>
+              <li>
+                <a href="/catalog?category=shoes"> Shoes</a>
+              </li>
+              <li>
+                <a href="/catalog?category=hat"> Hats</a>
+              </li>
+              <li>
+                <a href="/catalog?category=bag"> Bags &amp; Purses</a>
+              </li>
+              <li>
+                <a href="/catalog?category=coat"> Coat &amp; Jacket</a>
+              </li>
+              <li>
+                <a href="/catalog?category=jewellery"> Jewellery</a>
+              </li>
+            </ul>
+          </div>
         </section>
         <section class="panel">
-            <header class="panel-heading">
-                Price Range
-            </header>
-            <div class="wrapper">
-                <div class="price-input">
-                    <div class="field">
-                    <span>Min</span>
-                    <input type="number" class="input-min" value="2500">
-                    </div>
-                    <div class="field">
-                    <span>Max</span>
-                    <input type="number" class="input-max" value="7500">
-                    </div>
-                </div>
+          <header class="panel-heading">Price Range</header>
+          <div class="wrapper">
+            <div class="price-input">
+              <div class="field">
+                <span>Min</span>
+                <input type="number" class="input-min" value="2500" />
+              </div>
+              <div class="field">
+                <span>Max</span>
+                <input type="number" class="input-max" value="7500" />
+              </div>
             </div>
-            <div class="panel-body sliders">
-                <div id="slider-range" class="slider"></div>
-                <div class="slider-info">
-                    <span id="slider-range-amount"></span>
-                </div>
+          </div>
+          <div class="panel-body sliders">
+            <div id="slider-range" class="slider"></div>
+            <div class="slider-info">
+              <span id="slider-range-amount"></span>
             </div>
-            <div class="shop__filter">
-                <!-- Price -->
-                <h3 class="headline">
-                  <span>Price</span>
-                </h3>
-                <div class="radio">
-                  <input type="radio" name="shop-filter__price" id="shop-filter-price_1" value="" checked="">
-                  <label for="shop-filter-price_1">Under $25</label>
-                </div>
-                <div class="radio">
-                  <input type="radio" name="shop-filter__price" id="shop-filter-price_2" value="">
-                  <label for="shop-filter-price_2">$25 to $50</label>
-                </div>
-                <div class="radio">
-                  <input type="radio" name="shop-filter__price" id="shop-filter-price_3" value="">
-                  <label for="shop-filter-price_3">$50 to $100</label>
-                </div>
-                <div class="radio">
-                  <input type="radio" name="shop-filter__price" id="shop-filter-price_4" value="specify">
-                  <label for="shop-filter-price_4">Other (specify)</label>
-                </div>
-                <div class="form-group shop-filter__price">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <label for="shop-filter-price_from" class="sr-only"></label>
-                      <input id="shop-filter-price_from" type="number" min="0" class="form-control" placeholder="From" disabled="">
-                    </div>
-                    <div class="col-xs-4">
-                      <label for="shop-filter-price_to" class="sr-only"></label>
-                      <input id="shop-filter-price_to" type="number" min="0" class="form-control" placeholder="To" disabled="">
-                    </div>
-                    <div class="col-xs-4">
-                      <button type="submit" class="btn btn-block btn-default" disabled="">Go</button>
-                    </div>
-                  </div>
-                </div>
+          </div>
+          <div class="shop__filter">
+            <!-- Price -->
+            <h3 class="headline">
+              <span>Price</span>
+            </h3>
+            <div class="radio">
+              <input
+                type="radio"
+                name="shop-filter__price"
+                id="shop-filter-price_1"
+                value=""
+                checked=""
+              />
+              <label for="shop-filter-price_1">Under $25</label>
             </div>
+            <div class="radio">
+              <input
+                type="radio"
+                name="shop-filter__price"
+                id="shop-filter-price_2"
+                value=""
+              />
+              <label for="shop-filter-price_2">$25 to $50</label>
+            </div>
+            <div class="radio">
+              <input
+                type="radio"
+                name="shop-filter__price"
+                id="shop-filter-price_3"
+                value=""
+              />
+              <label for="shop-filter-price_3">$50 to $100</label>
+            </div>
+            <div class="radio">
+              <input
+                type="radio"
+                name="shop-filter__price"
+                id="shop-filter-price_4"
+                value="specify"
+              />
+              <label for="shop-filter-price_4">Other (specify)</label>
+            </div>
+            <div class="form-group shop-filter__price">
+              <div class="row">
+                <div class="col-xs-4">
+                  <label for="shop-filter-price_from" class="sr-only"></label>
+                  <input
+                    id="shop-filter-price_from"
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="From"
+                    disabled=""
+                  />
+                </div>
+                <div class="col-xs-4">
+                  <label for="shop-filter-price_to" class="sr-only"></label>
+                  <input
+                    id="shop-filter-price_to"
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="To"
+                    disabled=""
+                  />
+                </div>
+                <div class="col-xs-4">
+                  <button
+                    type="submit"
+                    class="btn btn-block btn-default"
+                    disabled=""
+                  >
+                    Go
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
         <section class="panel">
-            <header class="panel-heading">
-                Filter
-            </header>
-            <div class="panel-body">
-                <form role="form product-form">
-                    <!-- <div class="form-group">
+          <header class="panel-heading">Filter</header>
+          <div class="panel-body">
+            <form role="form product-form">
+              <!-- <div class="form-group">
                         <label>Brand</label>
                         <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
                             <option>Wallmart</option>
@@ -196,33 +252,69 @@
                         </select>
                         <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Wallmart</span></span>
                     </div> -->
-                    <div class="form-group">
-                        <label>Color</label>
-                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                            <option>White</option>
-                            <option>Black</option>
-                            <option>Red</option>
-                            <option>Green</option>
-                        </select>
-                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">White</span></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Size</label>
-                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                            <option>None</option>
-                            <option>Small</option>
-                            <option>Medium</option>
-                            <option>Large</option>
-                            <option>Extra Large</option>
-                        </select>
-                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Small</span></span>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Filter</button>
-                </form>
-            </div>
+              <div class="form-group">
+                <label>Color</label>
+                <select
+                  class="form-control hasCustomSelect"
+                  style="
+                    -webkit-appearance: menulist-button;
+                    width: 231px;
+                    position: absolute;
+                    opacity: 0;
+                    height: 34px;
+                    font-size: 12px;
+                  "
+                >
+                  <option>White</option>
+                  <option>Black</option>
+                  <option>Red</option>
+                  <option>Green</option>
+                </select>
+                <span
+                  class="customSelect form-control"
+                  style="display: inline-block"
+                  ><span
+                    class="customSelectInner"
+                    style="width: 209px; display: inline-block"
+                    >White</span
+                  ></span
+                >
+              </div>
+              <div class="form-group">
+                <label>Size</label>
+                <select
+                  class="form-control hasCustomSelect"
+                  style="
+                    -webkit-appearance: menulist-button;
+                    width: 231px;
+                    position: absolute;
+                    opacity: 0;
+                    height: 34px;
+                    font-size: 12px;
+                  "
+                >
+                  <option>None</option>
+                  <option>Small</option>
+                  <option>Medium</option>
+                  <option>Large</option>
+                  <option>Extra Large</option>
+                </select>
+                <span
+                  class="customSelect form-control"
+                  style="display: inline-block"
+                  ><span
+                    class="customSelectInner"
+                    style="width: 209px; display: inline-block"
+                    >Small</span
+                  ></span
+                >
+              </div>
+              <button class="btn btn-primary" type="submit">Filter</button>
+            </form>
+          </div>
         </section>
-    </div>
-    <div class="col-md-9">
+      </div>
+      <div class="col-md-9">
         <!-- <section class="panel">
             <div class="panel-body">
                 <div class="pull-right">
@@ -237,202 +329,206 @@
         </section> -->
 
         <div class="row product-list">
-            {% for item in items: %}
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <a href="#"><img src="https://via.placeholder.com/250x220/FFB6C1/000000" alt="" /></a>
-                    </div>
+          {% for item in items: %}
+          <div class="col-md-4">
+            <section class="panel">
+              <div class="pro-img-box">
+                <a href="#"
+                  ><img
+                    src="https://via.placeholder.com/250x220/FFB6C1/000000"
+                    alt=""
+                /></a>
+              </div>
 
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                {{item["name"]}}
-                            </a>
-                        </h4>
-                        <p class="price">${{item["price"]}}</p>
-                    </div>
-                </section>
-            </div>
-            {% endfor %}
+              <div class="panel-body text-center">
+                <h4>
+                  <a href="#" class="pro-title"> {{item["name"]}} </a>
+                </h4>
+                <p class="price">${{item["price"]}}</p>
+              </div>
+            </section>
+          </div>
+          {% endfor %}
         </div>
+      </div>
     </div>
-</div>
 
-<script>
-    function search() {
-      let query = document.getElementById("searchForm")["searchBar"].value;
-      window.location.href = `/catalog?search=${query}`;
-    }
-  </script>
-<style type="text/css">
-body{
-background:#f1f2f7;
-}
+    <script>
+      function search() {
+        let query = document.getElementById("searchForm")["searchBar"].value;
+        window.location.href = `/catalog?search=${query}`;
+      }
+    </script>
+    <style type="text/css">
+      body {
+        background: #f1f2f7;
+      }
 
-/*panel*/
-.panel {
-    border: none;
-    box-shadow: none;
-}
+      /*panel*/
+      .panel {
+        border: none;
+        box-shadow: none;
+      }
 
-.panel-heading {
-    border-color:#eff2f7 ;
-    font-size: 16px;
-    font-weight: 300;
-}
+      .panel-heading {
+        border-color: #eff2f7;
+        font-size: 16px;
+        font-weight: 300;
+      }
 
-.panel-title {
-    color: #2A3542;
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 0;
-    margin-top: 0;
-    font-family: 'Open Sans', sans-serif;
-}
+      .panel-title {
+        color: #2a3542;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 0;
+        margin-top: 0;
+        font-family: "Open Sans", sans-serif;
+      }
 
+      /*product list*/
 
-/*product list*/
+      .prod-cat li a {
+        border-bottom: 1px dashed #d9d9d9;
+      }
 
-.prod-cat li a{
-    border-bottom: 1px dashed #d9d9d9;
-}
+      .prod-cat li a {
+        color: #3b3b3b;
+      }
 
-.prod-cat li a {
-    color: #3b3b3b;
-}
+      .prod-cat li ul {
+        margin-left: 30px;
+      }
 
-.prod-cat li ul {
-    margin-left: 30px;
-}
+      .prod-cat li ul li a {
+        border-bottom: none;
+      }
+      .prod-cat li ul li a:hover,
+      .prod-cat li ul li a:focus,
+      .prod-cat li ul li.active a,
+      .prod-cat li a:hover,
+      .prod-cat li a:focus,
+      .prod-cat li a.active {
+        background: none;
+        color: #ff7261;
+      }
 
-.prod-cat li ul li a{
-    border-bottom:none;
-}
-.prod-cat li ul li a:hover,.prod-cat li ul li a:focus, .prod-cat li ul li.active a , .prod-cat li a:hover,.prod-cat li a:focus, .prod-cat li a.active{
-    background: none;
-    color: #ff7261;
-}
+      .pro-lab {
+        margin-right: 20px;
+        font-weight: normal;
+      }
 
-.pro-lab{
-    margin-right: 20px;
-    font-weight: normal;
-}
+      .pro-sort {
+        padding-right: 20px;
+        float: left;
+      }
 
-.pro-sort {
-    padding-right: 20px;
-    float: left;
-}
+      .pro-page-list {
+        margin: 5px 0 0 0;
+      }
 
-.pro-page-list {
-    margin: 5px 0 0 0;
-}
+      .product-list img {
+        width: 100%;
+        border-radius: 4px 4px 0 0;
+        -webkit-border-radius: 4px 4px 0 0;
+      }
 
-.product-list img{
-    width: 100%;
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-}
+      .product-list .pro-img-box {
+        position: relative;
+      }
+      .adtocart {
+        background: #fc5959;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        color: #fff;
+        display: inline-block;
+        text-align: center;
+        border: 3px solid #fff;
+        left: 45%;
+        bottom: -25px;
+        position: absolute;
+      }
 
-.product-list .pro-img-box {
-    position: relative;
-}
-.adtocart {
-    background: #fc5959;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    color: #fff;
-    display: inline-block;
-    text-align: center;
-    border: 3px solid #fff;
-    left: 45%;
-    bottom: -25px;
-    position: absolute;
-}
+      .adtocart i {
+        color: #fff;
+        font-size: 25px;
+        line-height: 42px;
+      }
 
-.adtocart i{
-    color: #fff;
-    font-size: 25px;
-    line-height: 42px;
-}
+      .pro-title {
+        color: #5a5a5a;
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 16px;
+      }
 
-.pro-title {
-    color: #5A5A5A;
-    display: inline-block;
-    margin-top: 20px;
-    font-size: 16px;
-}
+      .product-list .price {
+        color: #fc5959;
+        font-size: 15px;
+      }
 
-.product-list .price {
-    color:#fc5959 ;
-    font-size: 15px;
-}
+      .pro-img-details {
+        margin-left: -15px;
+      }
 
-.pro-img-details {
-    margin-left: -15px;
-}
+      .pro-img-details img {
+        width: 100%;
+      }
 
-.pro-img-details img {
-    width: 100%;
-}
+      .pro-d-title {
+        font-size: 16px;
+        margin-top: 0;
+      }
 
-.pro-d-title {
-    font-size: 16px;
-    margin-top: 0;
-}
+      .product_meta {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+        margin: 15px 0;
+      }
 
-.product_meta {
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 10px 0;
-    margin: 15px 0;
-}
+      .product_meta span {
+        display: block;
+        margin-bottom: 10px;
+      }
+      .product_meta a,
+      .pro-price {
+        color: #fc5959;
+      }
 
-.product_meta span {
-    display: block;
-    margin-bottom: 10px;
-}
-.product_meta a, .pro-price{
-    color:#fc5959 ;
-}
+      .pro-price,
+      .amount-old {
+        font-size: 18px;
+        padding: 0 10px;
+      }
 
-.pro-price, .amount-old {
-    font-size: 18px;
-    padding: 0 10px;
-}
+      .amount-old {
+        text-decoration: line-through;
+      }
 
-.amount-old {
-    text-decoration: line-through;
-}
+      .quantity {
+        width: 120px;
+      }
 
-.quantity {
-    width: 120px;
-}
+      .pro-img-list {
+        margin: 10px 0 0 -15px;
+        width: 100%;
+        display: inline-block;
+      }
 
-.pro-img-list {
-    margin: 10px 0 0 -15px;
-    width: 100%;
-    display: inline-block;
-}
+      .pro-img-list a {
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
 
-.pro-img-list a {
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
+      .pro-d-head {
+        font-size: 18px;
+        font-weight: 300;
+      }
+    </style>
 
-.pro-d-head {
-    font-size: 18px;
-    font-weight: 300;
-}
-
-
-</style>
-
-<script type="text/javascript">
-
-</script>
-</body>
+    <script type="text/javascript"></script>
+  </body>
 </html>
