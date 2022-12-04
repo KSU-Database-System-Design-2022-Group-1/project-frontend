@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>KStores - View</title>
+    <title>KStores</title>
   </head>
 
   <body>
@@ -91,9 +91,9 @@
     <main class="container">
       <!-- Left Column / Headphones Image -->
       <div class="left-column">
-        <img data-image="black" src="images/black.png" alt="" />
-        <img data-image="blue" src="images/blue.png" alt="" />
-        <img data-image="red" class="active" src="images/red.png" alt="" />
+        <img
+        src="http://localhost:5000/catalog/item/image?item_id={{item["item_id"]}}&variant_id={{selected_variant}}"
+        alt="" style="margin-top: 50px; padding-right: 10vw; opacity: 100%" />
       </div>
 
       <!-- Right Column -->
@@ -103,21 +103,33 @@
           <span>{{item["category"]}}</span>
           <h1>{{item["name"]}}</h1>
           <p>{{item["description"]}}</p>
-          <h2>${{item["price"]}} each</h2>
+          {% for variant in item["variants"] %}
+              {% if variant["variant_id"] == selected_variant %}
+                <h2>${{variant["price"]}} each</h2>
+              {% endif %}
+          {% endfor %}
         </div>
 
         <!-- Product Configuration -->
         <div class="product-configuration">
           <h3>Variation<br /></h3>
-          <select>
+          <select onchange="changeVariant()" id="variant_select">
             {% for variant in item["variants"] %}
-            <option>{{variant["color"]}}, {{variant["size"]}}</option>
+              {% if variant["variant_id"] == selected_variant %}
+                <option value="{{variant["variant_id"]}}" selected>
+                  {{variant["color"]}}, {{variant["size"]}} - ${{variant["price"]}}
+                </option>
+              {% else %}
+                <option value="{{variant["variant_id"]}}">
+                  {{variant["color"]}}, {{variant["size"]}} - ${{variant["price"]}}
+                </option>
+              {% endif %}
             {% endfor %}
           </select>
 
           <hr />
           <h3>Quantity<br /></h3>
-          <select>
+          <select id="Quantity">
             {%for x in range(1, item["stock"] + 1)%}
             <option>{{x}}</option>
             {% endfor %}
@@ -125,13 +137,34 @@
           <hr />
         </div>
 
+       
+
         <!-- Product Pricing -->
         <div class="product-price">
-          <span>148$</span>
-          <a href="#" class="cart-btn">Add to cart</a>
+          <button class="cart-btn" onclick="addToCart();">Add to cart</a>
         </div>
       </div>
     </main>
+    <script>
+
+      function addToCart() {
+        var quantity = document.getElementById("Quantity").value
+        fetch('https://localhost:3000/cart/add', {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ "customer": 1,  "item": "{{item["item_id"]}}", "variant": "{{selected_variant}}", "qauntity": "{{qauntity}}" })
+        })
+        .then(response => window.location.href = '/catalog')
+      }
+
+      function changeVariant() {
+        var selecter = document.getElementById("variant_select");
+        window.location.href = '/catalog/item?item_id=' + {{item["item_id"]}} + "&variant_id=" + selecter.value;
+      }
+    </script>
   </body>
 
   <style>
