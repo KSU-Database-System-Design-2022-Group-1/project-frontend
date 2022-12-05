@@ -33,8 +33,8 @@ def orders():
 @app.route("/account/settings")
 def settings():
     r = requests.get("http://localhost:3000/customer/get", data={"customer": 1})
-    customer = json.loads(r)
-    return render_template('account_settings.html', customer={"first_name": "Bailey", "middle_name": "David", "last_name": "Wimer", "email": "bwimer3@kent.edu", "shipping_address": "123 Kent Rd. NE", "shipping_city": "Kent", "shipping_zip": "12345", "billing_address": "123 Kent Rd. NE", "billing_city": "Kent", "billing_zip": "12345", "phone_number": "5555555555"})
+    customer = json.loads(r.text)
+    return render_template('account_settings.html', customer=customer)
 
 
 @app.route("/")
@@ -55,9 +55,9 @@ def catalog():
 
 @app.route("/catalog/item")
 def item():
-    selected_variant = int(request.args.get('variant_id'))
-    item_id = int(request.args.get('item_id'))
-    r = requests.get("http://localhost:3000/catalog/get", data={"customer": 1})
+    selected_variant = request.args.get('variant_id')
+    item_id = request.args.get('item_id')
+    r = requests.get("http://localhost:3000/catalog/get", data={"customer": 1, 'item': item_id, 'variant': selected_variant})
     item_info = json.loads(r.text)
     return render_template('item.html', item=item_info, selected_variant=selected_variant)
 

@@ -104,7 +104,7 @@
           <h1>{{item["name"]}}</h1>
           <p>{{item["description"]}}</p>
           {% for variant in item["variants"] %}
-              {% if variant["variant_id"] == selected_variant %}
+              {% if variant["id"]["variant"] == selected_variant %}
                 <h2>${{variant["price"]}} each</h2>
               {% endif %}
           {% endfor %}
@@ -115,12 +115,12 @@
           <h3>Variation<br /></h3>
           <select onchange="changeVariant()" id="variant_select">
             {% for variant in item["variants"] %}
-              {% if variant["variant_id"] == selected_variant %}
-                <option value="{{variant["variant_id"]}}" selected>
+              {% if variant["id"]["variant"] == selected_variant %}
+                <option value="{{variant["id"]["variant"]}}" selected>
                   {{variant["color"]}}, {{variant["size"]}} - ${{variant["price"]}}
                 </option>
               {% else %}
-                <option value="{{variant["variant_id"]}}">
+                <option value="{{variant["id"]["variant"]}}">
                   {{variant["color"]}}, {{variant["size"]}} - ${{variant["price"]}}
                 </option>
               {% endif %}
