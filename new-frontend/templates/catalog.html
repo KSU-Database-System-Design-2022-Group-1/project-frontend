@@ -209,9 +209,18 @@
                   <input
                     type="radio"
                     name="shop-filter__price"
-                    id="shop-filter-price_1"
-                    value=""
+                    id="shop-filter-price_0"
+                    value="0"
                     checked=""
+                  />
+                  <label for="shop-filter-price_0">All</label>
+                </div>
+                <div class="radio" style="position: relative; left: 25px">
+                  <input
+                    type="radio"
+                    name="shop-filter__price"
+                    id="shop-filter-price_1"
+                    value="1"
                   />
                   <label for="shop-filter-price_1">Under $25</label>
                 </div>
@@ -220,7 +229,7 @@
                     type="radio"
                     name="shop-filter__price"
                     id="shop-filter-price_2"
-                    value=""
+                    value="2"
                   />
                   <label for="shop-filter-price_2">$25 to $50</label>
                 </div>
@@ -229,7 +238,7 @@
                     type="radio"
                     name="shop-filter__price"
                     id="shop-filter-price_3"
-                    value=""
+                    value="3"
                   />
                   <label for="shop-filter-price_3">$50 to $100</label>
                 </div>
@@ -288,6 +297,35 @@
               let queryString = window.location.search;
               const search = new URLSearchParams(queryString).get("search");
               let form = document.getElementById("filter_form");
+              let price_min, price_max;
+              let searchString = ""
+              if(search != "") {
+                searchString = "&search=" + search
+              }
+
+              switch(form["shop-filter__price"].value) {
+                case "0":
+                  price_min = "0";
+                  price_max = "100000";
+                  break;
+                case "1":
+                  price_min = "0";
+                  price_max = "25";
+                  break;
+                case "2":
+                  price_min = "25";
+                  price_max = "50";
+                  break;
+                case "3":
+                  price_min = "50";
+                  price_max = "100";
+                  break;
+                default:
+                  price_min = document.getElementById("shop-filter-price_from").value;
+                  price_max = document.getElementById("shop-filter-price_to").value;
+                  break;
+              }
+
               window.location.href =
                 "/catalog?category=" +
                 form["category"].value +
@@ -295,8 +333,7 @@
                 form["size"].value +
                 "&color=" +
                 form["color"].value +
-                "&search=" +
-                search;
+                "&price_min=" + price_min + "&price_max=" + price_max + searchString;
             });
         });
       </script>

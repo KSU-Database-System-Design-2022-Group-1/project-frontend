@@ -10,12 +10,6 @@
         <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <title>KStores</title>
-    <script>
-        // When a user visits the login page, their cookie is set to valid
-        // which means that they are logged in. This is temporary just to
-        // demonstrate how the login may end up working.
-        // document.cookie = "TestCookieForAuth=Valid;"
-    </script>
 </head>
 <body>
     
@@ -32,37 +26,37 @@
 			</div>
 		  </div>
 		  <div class="action">
-			<button onclick="register()">Register</button>
 			<button>Sign in</button>
 		  </div>
 		</form>
+    <a href="/register" style="text-align:center; padding-bottom:20px"><br>Need an account? Register here! </a>
 	  </div>
 
 	<p id="paragraph"></p>
 
 	<script>
-		function login(){
-		let node = document.createElement("p")
-		fetch("http://localhost:3000/login").then(res => (console.log(res)))
-		document.getElementById("paragraph").innerHTML = `Hello ${document.getElementById("login")["email"].value}`;
-		let parent = document.getElementById("paragraph");
-		parent.appendChild(node);
-		}
-
-		var form = document.getElementById("login-form")
+		var form = document.getElementById("register-form")
 		function handleForm(event) { 
 			event.preventDefault(); 
-			let node = document.createElement("p")
-			fetch("http://localhost:3000/login").then(res => (console.log(res)))
-			document.getElementById("paragraph").innerHTML = `Hello ${form["email"].value}`;
-			let parent = document.getElementById("paragraph");
-			parent.appendChild(node);
+      var payload = {
+          email: form["email"].value,
+          password: form["password"].value
+      };
+
+      var data = new FormData();
+      data.append( "json", JSON.stringify( payload ) );
+
+      fetch("http://localhost:3000/customer/signin",
+      {
+          method: "POST",
+          body: data
+      })
+      .then(function(res){ return res.json(); })
+      .then(function(data){ alert( JSON.stringify( data["customer"]) ) })
+
+			fetch("http://localhost:3000/customer/signup").then(res => (console.log(res)))
 		} 
 		form.addEventListener('submit', handleForm);
-
-		function register(){
-			window.location.href = `/register`;
-		}
 	</script>
 
 	<style>

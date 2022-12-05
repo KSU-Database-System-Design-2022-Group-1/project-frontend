@@ -89,7 +89,7 @@
             <option>WI</option>
             <option>WY</option>
           </select>
-        <input type="text" placeholder="Zip" name="s_state">
+        <input type="text" placeholder="Zip" name="s_zip">
 			</div>
       <h3>Billing Address</h3>
       <div class="input-field">
@@ -148,13 +148,13 @@
             <option>WI</option>
             <option>WY</option>
           </select>
-        <input type="text" placeholder="Zip" name="b_state">
+        <input type="text" placeholder="Zip" name="b_zip">
 			</div>
 		  <div class="action">
-			<button onclick="back_to_login()">Back to Login</button>
 			<button>Register</button>
 		  </div>
 		</form>
+    <a href="/login"><br>Back to Login</a>
 	  </div>
 
 	<p id="paragraph"></p>
@@ -163,17 +163,37 @@
 		var form = document.getElementById("register-form")
 		function handleForm(event) { 
 			event.preventDefault(); 
-			let node = document.createElement("p")
-			fetch("http://localhost:5000/login").then(res => (console.log(res)))
-			document.getElementById("paragraph").innerHTML = `Hello ${form["email"].value}`;
-			let parent = document.getElementById("paragraph");
-			parent.appendChild(node);
+      var payload = {
+          email: form["email"].value,
+          password: form["password"].value,
+          phone_number: form["phone"].value,
+          first_name: form["fname"].value,
+          middle_name: form["mname"].value,
+          last_name: form["lname"].value,
+          billing_address: form["b_addr"].value,
+          billing_city: form["b_city"].value,
+          billing_state: form["b_state"].value,
+          billing_zip: form["b_zip"].value,
+          shipping_address: form["s_addr"].value,
+          shipping_city: form["s_city"].value,
+          shipping_state: form["s_state"].value,
+          shipping_zip: form["s_zip"].value,
+      };
+
+      var data = new FormData();
+      data.append( "json", JSON.stringify( payload ) );
+
+      fetch("http://localhost:3000/customer/signup",
+      {
+          method: "POST",
+          body: data
+      })
+      .then(function(res){ return res.json(); })
+      .then(function(data){ alert( JSON.stringify( data["customer"]) ) })
+
+			fetch("http://localhost:3000/customer/signup").then(res => (console.log(res)))
 		} 
 		form.addEventListener('submit', handleForm);
-
-		function back_to_login(){
-			window.location.href = `/login`;
-		}
 	</script>
 
 	<style>

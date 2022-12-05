@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, make_response
 import requests
 import json
 import os
@@ -10,6 +10,13 @@ app = Flask(__name__)
 def login():
     return render_template('login.html')
 
+@app.route("/login/go", methods= ['POST'])
+def loginAction():
+    user = request.form['email']
+    password = request.form['password']
+    r = requests.get("http://localhost:3000/customer/signin", data={"email": user, "password": password})
+    resp = make_response()
+    
 
 @app.route("/register")
 def register():
@@ -25,18 +32,24 @@ def orders():
 
 @app.route("/account/settings")
 def settings():
+    r = requests.get("http://localhost:3000/customer/get", data={"customer": 1})
+    customer = json.loads(r)
     return render_template('account_settings.html', customer={"first_name": "Bailey", "middle_name": "David", "last_name": "Wimer", "email": "bwimer3@kent.edu", "shipping_address": "123 Kent Rd. NE", "shipping_city": "Kent", "shipping_zip": "12345", "billing_address": "123 Kent Rd. NE", "billing_city": "Kent", "billing_zip": "12345", "phone_number": "5555555555"})
 
 
 @app.route("/")
 @app.route("/catalog")
 def catalog():
-    search = request.args.get('search')
-    color = request.args.get('color')
-    size = request.args.get('size')
-    price_min = request.args.get('price_min')
-    price_max = request.args.get('price_max')
-    category = request.args.get('category')
+    search_data = {
+        "name": request.args.get('search'),
+        "color": request.args.get('color'),
+        "size": request.args.get('size'),
+        "minprice": request.args.get('price_min'),
+        "maxprice": request.args.get('price_max'),
+        "category": request.args.get('category')
+    }
+    #r = requests.get("http://localhost:3000/catalog/search", data=search_data)
+    #items = json.loads(r)["items"]
     return render_template('catalog.html', items=[{"item_id": 1, "name": "Test", "price": 300}, {"item_id": 2, "name": "Kent Shirt", "price": 27.99}, {"item_id": 3, "name": "Hat", "price": 10.95}, {"item_id": 4, "name": "Bill Reed", "price": 100000.00}])
 
 
@@ -44,7 +57,7 @@ def catalog():
 def item():
     selected_variant = int(request.args.get('variant_id'))
     item_id = int(request.args.get('item_id'))
-    r = requests.get("http://localhost:3000/cart/info", data={"customer": 1})
+    r = requests.get("http://localhost:3000/catalog/get", data={"customer": 1})
     item_info = json.loads(r.text)
     return render_template('item.html', item=item_info, selected_variant=selected_variant)
 
