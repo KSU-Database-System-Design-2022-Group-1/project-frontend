@@ -55,7 +55,7 @@ def catalog():
 
 @app.route("/catalog/item")
 def item():
-    selected_variant = request.args.get('variant_id')
+    selected_variant = request.args.get('variant_id', type=int)
     item_id = request.args.get('item_id')
     r = requests.get("http://localhost:3000/catalog/get", data={"customer": 1, 'item': item_id, 'variant': selected_variant})
     item_info = json.loads(r.text)
