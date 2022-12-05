@@ -85,7 +85,7 @@ def image():
         print("dir already exists")
     with open(f'./images/{request.args.get("image_id")}.jpg', 'wb') as f:
         f.write(r.content)
-    return send_file(f'./images/{request.args.get("item_id")}/{request.args.get("variant_id")}.jpg', mimetype="image/jpeg")
+    return send_file(f'./images/{request.args.get("image_id")}.jpg', mimetype="image/jpeg")
 
 
 if __name__ == '__main__':
