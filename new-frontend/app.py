@@ -74,13 +74,16 @@ def cart():
 
 @ app.route("/catalog/item/image")
 def image():
-    r = requests.get(
-        "https://d33wubrfki0l68.cloudfront.net/13d099d0ba920a02c9e37e336cb35c7939a2c7d3/0f08e/images/ghost/2022-06-13-5-image-apis-you-can-use-for-your-next-project-in-2022/6.jpeg", stream=True)
+    data = {'image': request.args.get("image_id")}
     try:
-        os.mkdir(f'./images/{request.args.get("item_id")}/')
+        r = requests.get("http://localhost:3000/image/get", data=data)
+    except:
+        r = requests.get("http://localhost:3000/image/get", data={'image': 1})
+    try:
+        os.mkdir(f'./images/')
     except:
         print("dir already exists")
-    with open(f'./images/{request.args.get("item_id")}/{request.args.get("variant_id")}.jpg', 'wb') as f:
+    with open(f'./images/{request.args.get("image_id")}.jpg', 'wb') as f:
         f.write(r.content)
     return send_file(f'./images/{request.args.get("item_id")}/{request.args.get("variant_id")}.jpg', mimetype="image/jpeg")
 
