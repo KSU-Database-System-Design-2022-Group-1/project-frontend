@@ -299,7 +299,7 @@
               let form = document.getElementById("filter_form");
               let price_min, price_max;
               let searchString = ""
-              if(search != "") {
+              if(search != null) {
                 searchString = "&search=" + search
               }
 
@@ -354,24 +354,20 @@
 
         <div class="row product-list">
           {% for item in items: %}
+          <a href="/catalog/item?item_id={{item['id']['item']}}&variant_id={{item['id']['variant']}}">
           <div class="col-md-4">
             <section class="panel">
               <div class="pro-img-box">
-                <a href="/catalog/item?item_id={{item["item_id"]}}&variant_id=1"
-                  ><img
-                  src="/catalog/item/image?item_id={{item["item_id"]}}&variant_id=1"
-                  alt="" /></a
-                >
-              </div>
-
-              <div class="panel-body text-center">
-                <h4>
-                  <a href="/catalog/item?item_id={{item["item_id"]}}&variant_id=1" class="pro-title"> {{item["name"]}} </a>
-                </h4>
-                <p class="price">${{item["price"]}}</p>
-              </div>
-            </section>
-          </div>
+                  <img src="/catalog/item/image?item_id={{item['id']['item']}}&variant_id={{item['id']['variant']}}" alt="" />
+                </div>
+                {{item}}
+                <div class="panel-body text-center">
+                  <h4>{{item["name"]}}</h4>
+                  <p class="price">${{item["price"]}}</p>
+                </div>
+              </section>
+            </div>
+          </a>
           {% endfor %}
         </div>
       </div>
