@@ -25,7 +25,7 @@ def orders():
 
 @app.route("/account/settings")
 def settings():
-    return render_template('account_settings.html', customer={"first_name": "Bailey", "last_name": "Wimer", "email": "bwimer3@kent.edu", "shipping_address": "123 Kent Rd. NE", "shipping_city": "Kent", "shipping_zip": "12345", "billing_address": "123 Kent Rd. NE", "billing_city": "Kent", "billing_zip": "12345", "phone_number": "5555555555"})
+    return render_template('account_settings.html', customer={"first_name": "Bailey", "middle_name": "David", "last_name": "Wimer", "email": "bwimer3@kent.edu", "shipping_address": "123 Kent Rd. NE", "shipping_city": "Kent", "shipping_zip": "12345", "billing_address": "123 Kent Rd. NE", "billing_city": "Kent", "billing_zip": "12345", "phone_number": "5555555555"})
 
 
 @app.route("/")
@@ -43,7 +43,10 @@ def catalog():
 @app.route("/catalog/item")
 def item():
     selected_variant = int(request.args.get('variant_id'))
-    return render_template('item.html', item={"item_id": 1, "name": "Test", "description": "This is a test and only a test", "category": "Shirt", "price": 52.95, "stock": 22, "variants": [{"variant_id": 1, "size": "M", "color": "Blue", "price": "15.99"}, {"variant_id": 2, "size": "L", "color": "Blue", "price": "12.55"}, {"variant_id": 3, "size": "XL", "color": "Blue", "price": "20.00"}, {"variant_id": 4, "size": "XL", "color": "Red", "price": "40.99"}]}, selected_variant=selected_variant)
+    item_id = int(request.args.get('item_id'))
+    r = requests.get("http://localhost:3000/cart/info", data={"customer": 1})
+    item_info = json.loads(r.text)
+    return render_template('item.html', item=item_info, selected_variant=selected_variant)
 
 
 @ app.route("/cart")

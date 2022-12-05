@@ -92,7 +92,7 @@
       <!-- Left Column / Headphones Image -->
       <div class="left-column">
         <img
-        src="http://localhost:5000/catalog/item/image?item_id={{item["item_id"]}}&variant_id={{selected_variant}}"
+        src="http://localhost:5000/catalog/item/image?item_id={{item["id"]}}&variant_id={{selected_variant}}"
         alt="" style="margin-top: 50px; padding-right: 10vw; opacity: 100%" />
       </div>
 
@@ -130,7 +130,7 @@
           <hr />
           <h3>Quantity<br /></h3>
           <select id="Quantity">
-            {%for x in range(1, item["stock"] + 1)%}
+            {%for x in range(1, 10)%}
             <option>{{x}}</option>
             {% endfor %}
           </select>
@@ -155,14 +155,14 @@
               'Accept': 'application/json',
               'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ "customer": 1,  "item": "{{item["item_id"]}}", "variant": "{{selected_variant}}", "qauntity": "{{qauntity}}" })
+          body: JSON.stringify({ "customer": 1,  "item": "{{item["id"]}}", "variant": "{{selected_variant}}", "qauntity": "{{qauntity}}" })
         })
         .then(response => window.location.href = '/catalog')
       }
 
       function changeVariant() {
         var selecter = document.getElementById("variant_select");
-        window.location.href = '/catalog/item?item_id=' + {{item["item_id"]}} + "&variant_id=" + selecter.value;
+        window.location.href = '/catalog/item?item_id=' + {{item["id"]}} + "&variant_id=" + selecter.value;
       }
     </script>
   </body>
