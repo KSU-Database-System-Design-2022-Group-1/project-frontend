@@ -37,7 +37,7 @@ def catalog():
     price_min = request.args.get('price_min')
     price_max = request.args.get('price_max')
     category = request.args.get('category')
-    return render_template('catalog.html', items=[{"name": "Test", "price": 300}, {"name": "Kent Shirt", "price": 27.99}, {"name": "Hat", "price": 10.95}, {"name": "Bill Reed", "price": 100000.00}])
+    return render_template('catalog.html', items=[{"item_id": 1, "name": "Test", "price": 300}, {"item_id": 2, "name": "Kent Shirt", "price": 27.99}, {"item_id": 3, "name": "Hat", "price": 10.95}, {"item_id": 4, "name": "Bill Reed", "price": 100000.00}])
 
 
 @app.route("/catalog/item")
