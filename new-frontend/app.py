@@ -72,7 +72,7 @@ def orders():
     customerID = request.cookies.get('UserID')
     if customerID == None:
         return redirect('/login')
-    r = requests.get("http://localhost:3000/order/list", data={"customer": 1})
+    r = requests.get("http://localhost:3000/order/list", data={"customer": customerID})
     orders = json.loads(r.text)["orders"]
     return render_template('order_history.html', orders=orders)
 
