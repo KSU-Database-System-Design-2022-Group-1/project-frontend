@@ -23,9 +23,7 @@ def loginAction():
     data = json.loads(r.text)
     if data['valid']:
         resp = make_response(redirect('/catalog'))
-        r = requests.get("http://localhost:3000/customer/signin",
-                         data={"email": user, "password": password})
-        resp.set_cookie('UserID', '1')
+        resp.set_cookie('UserID', str(data['customer']))
         return resp
     else:
         return redirect('/login')
