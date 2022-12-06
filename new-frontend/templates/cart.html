@@ -73,7 +73,6 @@
                                     <th scope="col">Product</th>
                                     <th scope="col" width="120">Quantity</th>
                                     <th scope="col" width="120">Price</th>
-                                    <th scope="col" class="text-right d-none d-md-block" width="200"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,7 +86,8 @@
                                             </figcaption>
                                         </figure>
                                     </td>
-                                    <td> <select class="form-control">
+                                    <td> <select class="form-control" onchange="changeQuantity({{item['id']['item']}}, {{item['id']['variant']}})" id="{{item['id']['item']}}-{{item['id']['variant']}}">
+                                            <option value="0">0 (Remove)</option>
                                         {% for x in range(1, item["stock"] + 1) %}
                                             {% if x == item["quantity"]%}
                                             <option selected>{{x}}</option>
@@ -99,7 +99,6 @@
                                     <td>
                                         <div class="price-wrap"> <var class="price">${{item["total_price"]}}</var> <small class="text-muted"> ${{item["price"]}} each </small> </div>
                                     </td>
-                                    <td class="text-right d-none d-md-block"></a> <a href="" class="btn btn-light" data-abc="true"> Remove</a> </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -132,7 +131,12 @@
       let query = document.getElementById("searchForm")["searchBar"].value;
       window.location.href = `/catalog?search=${query}`;
     }
-  </script>
+
+    function changeQuantity(item, variant) {
+        let quantity = document.getElementById(`${item}-${variant}`).value;
+        window.location.href = `/catalog/item/add?item=${item}&variant=${variant}&quantity=${quantity}`
+    }
+</script>
 </body>
 
 <style>

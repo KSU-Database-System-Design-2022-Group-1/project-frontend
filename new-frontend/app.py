@@ -169,8 +169,8 @@ def addToCart():
     selected_variant = request.args.get('variant', type=int)
     item_id = request.args.get('item', type=int)
     quantity = request.args.get('quantity', type=int)
-    r = requests.post('http://localhost:3000/cart/add', data={
-                      "customer": customerID, "item": item_id, "variant": selected_variant, "quantity": quantity})
+    requests.post('http://localhost:3000/cart/add', data={
+        "customer": customerID, "item": item_id, "variant": selected_variant, "quantity": quantity})
     return redirect('/cart')
 
 
@@ -193,10 +193,10 @@ def cart():
 def image():
     data = {'image': request.args.get("image_id")}
     r = requests.get("http://localhost:3000/image/get", data=data)
-    
+
     if not r.ok:
         return send_file("./images/noImage.png")
-    
+
     # if not os.path.exists("./images"):
     #     os.mkdir(f'./images/')
     # with open(f'./images/{request.args.get("image_id")}.jpg', 'wb') as f:
