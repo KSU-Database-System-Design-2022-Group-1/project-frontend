@@ -75,7 +75,6 @@
                 <li><a href="/account/orders">Order History</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/signout">Sign out</a></li>
-                <li><a href="/login">Sign in</a></li>
               </ul>
             </li>
           </ul>
@@ -298,12 +297,12 @@
               const search = new URLSearchParams(queryString).get("search");
               let form = document.getElementById("filter_form");
               let price_min, price_max;
-              let searchString = ""
-              if(search != null) {
-                searchString = "&search=" + search
+              let searchString = "";
+              if (search != null) {
+                searchString = "&search=" + search;
               }
 
-              switch(form["shop-filter__price"].value) {
+              switch (form["shop-filter__price"].value) {
                 case "0":
                   price_min = "0";
                   price_max = "100000";
@@ -321,8 +320,12 @@
                   price_max = "100";
                   break;
                 default:
-                  price_min = document.getElementById("shop-filter-price_from").value;
-                  price_max = document.getElementById("shop-filter-price_to").value;
+                  price_min = document.getElementById(
+                    "shop-filter-price_from"
+                  ).value;
+                  price_max = document.getElementById(
+                    "shop-filter-price_to"
+                  ).value;
                   break;
               }
 
@@ -333,7 +336,11 @@
                 form["size"].value +
                 "&color=" +
                 form["color"].value +
-                "&price_min=" + price_min + "&price_max=" + price_max + searchString;
+                "&price_min=" +
+                price_min +
+                "&price_max=" +
+                price_max +
+                searchString;
             });
         });
       </script>
@@ -354,15 +361,25 @@
 
         <div class="row product-list">
           {% for item in items: %}
-          <a href="/catalog/item?item_id={{item['id']['item']}}&variant_id={{item['id']['variant']}}">
-          <div class="col-md-4">
-            <section class="panel">
-              <div class="pro-img-box">
-                  <img src="/catalog/item/image?image_id={{item['image']}}" alt="" />
+          <a
+            href="/catalog/item?item_id={{item['id']['item']}}&variant_id={{item['id']['variant']}}"
+          >
+            <div class="col-md-4">
+              <section class="panel">
+                <div class="pro-img-box">
+                  <img
+                    src="/catalog/item/image?image_id={{item['image']}}"
+                    alt=""
+                  />
                 </div>
                 <div class="panel-body text-center">
                   <h4>{{item["name"]}}</h4>
-                  <p class="info"><span class="other">{{item["color"]}} &bull; {{item['size']}}</span> &bull; <span class="price">${{item["price"]}}</span></p>
+                  <p class="info">
+                    <span class="other"
+                      >{{item["color"]}} &bull; {{item['size']}}</span
+                    >
+                    &bull; <span class="price">${{item["price"]}}</span>
+                  </p>
                 </div>
               </section>
             </div>
@@ -483,16 +500,16 @@
         font-size: 16px;
       }
 
-.product-list .info .other {
-  color: black;
-  opacity: 0.5;
-  font-size: 15px;
-}
+      .product-list .info .other {
+        color: black;
+        opacity: 0.5;
+        font-size: 15px;
+      }
 
-.product-list .info .price {
-  color: cadetblue;
-  font-size: 15px;
-}
+      .product-list .info .price {
+        color: cadetblue;
+        font-size: 15px;
+      }
 
       .pro-img-details {
         margin-left: -15px;

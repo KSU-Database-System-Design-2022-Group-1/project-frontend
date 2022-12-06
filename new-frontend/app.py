@@ -68,6 +68,9 @@ def registerAction():
 
 @app.route("/account/orders")
 def orders():
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
     r = requests.get("http://localhost:3000/order/list", data={"customer": 1})
     orders = json.loads(r.text)["orders"]
     return render_template('order_history.html', orders=orders)
@@ -107,6 +110,9 @@ def catalog():
 
 @app.route("/catalog/item")
 def item():
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
     selected_variant = request.args.get('variant_id', type=int)
     item_id = request.args.get('item_id')
     r = requests.get("http://localhost:3000/catalog/get",
@@ -117,10 +123,15 @@ def item():
 
 @ app.route("/cart")
 def cart():
-    r = requests.get("http://localhost:3000/cart/info", data={"customer": 1})
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
+    r = requests.get("http://localhost:3000/cart/info",
+                     data={"customer": customerID})
     cart_info = json.loads(r.text)
     cart_info['weight'] = round(cart_info['weight'], 2)
-    r = requests.get("http://localhost:3000/cart/list", data={"customer": 1})
+    r = requests.get("http://localhost:3000/cart/list",
+                     data={"customer": customerID})
     cart = json.loads(r.text)["items"]
     return render_template('cart.html', cart=cart, cart_info=cart_info)
 
