@@ -192,11 +192,11 @@ def cart():
 @ app.route("/catalog/item/image")
 def image():
     data = {'image': request.args.get("image_id")}
-    try:
-        r = requests.get("http://localhost:3000/image/get", data=data)
-    except:
-        r = requests.get("http://localhost:3000/image/get", data={'image': 1})
-
+    r = requests.get("http://localhost:3000/image/get", data=data)
+    
+    if not r.ok:
+        return send_file("./images/noImage.png")
+    
     # if not os.path.exists("./images"):
     #     os.mkdir(f'./images/')
     # with open(f'./images/{request.args.get("image_id")}.jpg', 'wb') as f:
