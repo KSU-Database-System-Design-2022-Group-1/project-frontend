@@ -161,6 +161,19 @@ def item():
     return render_template('item.html', item=item_info, selected_variant=selected_variant)
 
 
+@app.route("/catalog/item/add")
+def addToCart():
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
+    selected_variant = request.args.get('variant', type=int)
+    item_id = request.args.get('item', type=int)
+    quantity = request.args.get('quantity', type=int)
+    r = requests.post('http://localhost:3000/cart/add', data={
+                      "customer": customerID, "item": item_id, "variant": selected_variant, "quantity": quantity})
+    return redirect('/cart')
+
+
 @ app.route("/cart")
 def cart():
     customerID = request.cookies.get('UserID')
