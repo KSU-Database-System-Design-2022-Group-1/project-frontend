@@ -48,7 +48,7 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="/cart">Cart</a></li>
+              <li><a href="/cart">Cart</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -65,7 +65,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h3>🛒 Shopping Cart</h3>
+                <h3>📅 Order History &ndash; Order #{{order_info['id']['order']}}</h3>
             </div>
         </div>
         <br />
@@ -73,7 +73,7 @@
             <aside class="col-lg-9">
                 <div class="card">
                     <div class="table-responsive">
-                        {% if cart %}
+                        {% if order_items %}
                         <table class="table table-borderless table-shopping-cart">
                             <thead class="text-muted">
                                 <tr class="small text-uppercase">
@@ -83,7 +83,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for item in cart %}
+                                {% for item in order_items %}
                                 <tr>
                                     <td>
                                         <figure class="itemside align-items-center">
@@ -93,16 +93,7 @@
                                             </figcaption>
                                         </figure>
                                     </td>
-                                    <td> <select class="form-control" onchange="changeQuantity({{item['id']['item']}}, {{item['id']['variant']}})" id="{{item['id']['item']}}-{{item['id']['variant']}}">
-                                            <option value="0">0 (Remove)</option>
-                                        {% for x in range(1, item["stock"] + 1) %}
-                                            {% if x == item["quantity"]%}
-                                            <option selected>{{x}}</option>
-                                            {% else %}
-                                            <option>{{x}}</option>
-                                            {% endif %}
-                                        {% endfor %}
-                                        </select> </td>
+                                    <td>{{item['quantity']}}</td>
                                     <td>
                                         <div class="price-wrap"> <var class="price">${{item["total_price"]}}</var> <small class="text-muted"> ${{item["price"]}} each </small> </div>
                                     </td>
@@ -111,7 +102,7 @@
                             </tbody>
                         </table>
                         {% else %}
-                        <p style="margin: 1em; text-align: center;">Your cart is currently empty.</p>
+                        <p style="margin: 1em; text-align: center;">Somehow, this order is empty.</p>
                         {% endif %}
                     </div>
                 </div>
@@ -121,13 +112,22 @@
                     <div class="card-body">
                         <dl class="dlist-align">
                             <dt>Total price: </dt>
-                            <dd class="text-right ml-3">${{cart_info["price"]}}</dd>
+                            <dd class="text-right ml-3">${{order_info["price"]}}</dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt>Total Weight: </dt>
-                            <dd class="text-right text-dark b ml-3">{{cart_info["weight"]}} Lbs.</dd>
+                            <dd class="text-right text-dark ml-3">{{order_info["weight"]}} Lbs.</dd>
                         </dl>
-                        <hr> <button onclick='placeOrder()' class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="margin-bottom:10px"> Place Order </button> <a href="/catalog" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
+                        <dl class="dlist-align">
+                            <dt>Time:</dt>
+                            <dd class="text-right text-dark ml-3">{{order_info['timestamp']}}</dd>
+                        </dl>
+                    </div>
+                </div>
+                <br />
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/account/orders">Back to Order History</a>
                     </div>
                 </div>
             </aside>
@@ -140,19 +140,6 @@
     function search() {
       let query = document.getElementById("searchForm")["searchBar"].value;
       window.location.href = `/catalog?search=${query}`;
-    }
-
-    function changeQuantity(item, variant) {
-        let quantity = document.getElementById(`${item}-${variant}`).value;
-        window.location.href = `/catalog/item/add?item=${item}&variant=${variant}&quantity=${quantity}`
-    }
-
-    function placeOrder() {
-        /*{% if cart_info['count'] > 0 %}*/
-        window.location.href = '/cart/order';
-        /*{% else %}*/
-        alert("You'll need some items in your shopping cart first!");
-        /*{% endif %}*/
     }
 </script>
 </body>

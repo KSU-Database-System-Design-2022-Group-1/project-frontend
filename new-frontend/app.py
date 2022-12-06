@@ -77,6 +77,20 @@ def orders():
     return render_template('order_history.html', orders=orders)
 
 
+@app.route("/account/order")
+def specific_order():
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
+    order_id = request.args.get('order', type=int)
+    r = requests.get("http://localhost:3000/order/get",
+                     data={"order": order_id})
+    order = json.loads(r.text)
+    order['weight'] = round(order['weight'], 2)
+    order_items = json.loads(r.text)["items"]
+    return render_template('order.html', order_items=order_items, order_info=order)
+
+
 @app.route("/account/settings")
 def settings():
     customerID = request.cookies.get('UserID')

@@ -98,9 +98,9 @@
                   <tr class="active-row">
                     <th style="padding: 7px">Order #</th>
                     <th style="padding: 7px">Total</th>
-                    \
                     <th style="padding: 7px">Status</th>
                     <th style="padding: 7px">Created</th>
+                    <th style="padding: 7px">Details</th>
                   </tr>
                 </thead>
                 <tbody class="table-body">
@@ -114,6 +114,7 @@
                       >
                     </td>
                     <td style="padding: 7px">{{order["timestamp"]}}</td>
+                    <td style="padding: 7px"><a href="/account/order?order={{order['id']['order']}}">Details</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
