@@ -62,7 +62,7 @@ def registerAction():
     print(r.text)
     customer = json.loads(r.text)
     resp = make_response(redirect('/catalog'))
-    resp.set_cookie('UserID', customer['customer'])
+    resp.set_cookie('UserID', str(customer['customer']))
     return resp
 
 
