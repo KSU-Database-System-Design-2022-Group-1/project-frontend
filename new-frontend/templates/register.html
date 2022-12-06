@@ -13,29 +13,29 @@
 <body>
     
 	  <div class="login-form">
-		<form id="register-form">
+		<form id="register-form" action="/register/go">
 		  <h1>KStores</h1>
 		  <h2>Register an Account</h1>
 		  <div class="content">
 			<div class="input-field">
-			  <input type="email" placeholder="Email" autocomplete="nope" name="email">
+			  <input type="email" placeholder="Email" autocomplete="nope" name="email" required>
 			</div>
 			<div class="input-field">
-			  <input type="password" placeholder="Password" autocomplete="new-password" name="password">
+			  <input type="password" placeholder="Password" autocomplete="new-password" name="password" required>
 			</div>
       <div class="input-field">
-			  <input type="text" placeholder="Phone Number" name="phone">
+			  <input type="text" placeholder="Phone Number" name="phone" required>
 			</div>
       <h3>Name</h3>
       <div class="input-field">
-			  <input type="text" placeholder="First Name" name="fname">
-        <input type="text" placeholder="Middle Name" name="mname">
-        <input type="text" placeholder="Last Name" name="lname">
+			  <input type="text" placeholder="First Name" name="fname" required>
+        <input type="text" placeholder="Middle Name" name="mname" required>
+        <input type="text" placeholder="Last Name" name="lname" required>
 			</div>
       <h3>Shipping Address</h3>
       <div class="input-field">
-			  <input type="text" placeholder="Address" name="s_addr">
-        <input type="text" placeholder="City" name="s_city">
+			  <input type="text" placeholder="Address" name="s_addr" required>
+        <input type="text" placeholder="City" name="s_city" required>
         <label for="inputState5">State</label>
           <select id="inputState5" class="form-control" name="s_state">
             <option selected="">AL</option>
@@ -89,12 +89,12 @@
             <option>WI</option>
             <option>WY</option>
           </select>
-        <input type="text" placeholder="Zip" name="s_zip">
+        <input type="text" placeholder="Zip" name="s_zip" required>
 			</div>
       <h3>Billing Address</h3>
       <div class="input-field">
-			  <input type="text" placeholder="Address" name="b_addr">
-        <input type="text" placeholder="City" name="b_city">
+			  <input type="text" placeholder="Address" name="b_addr" required>
+        <input type="text" placeholder="City" name="b_city" required>
         <label for="inputState5">State</label>
           <select id="inputState5" class="form-control" name="b_state">
             <option selected="">AL</option>
@@ -148,7 +148,7 @@
             <option>WI</option>
             <option>WY</option>
           </select>
-        <input type="text" placeholder="Zip" name="b_zip">
+        <input type="text" placeholder="Zip" name="b_zip" required>
 			</div>
 		  <div class="action">
 			<button>Register</button>
@@ -160,40 +160,6 @@
 	<p id="paragraph"></p>
 
 	<script>
-		var form = document.getElementById("register-form")
-		function handleForm(event) { 
-			event.preventDefault(); 
-      var payload = {
-          email: form["email"].value,
-          password: form["password"].value,
-          phone_number: form["phone"].value,
-          first_name: form["fname"].value,
-          middle_name: form["mname"].value,
-          last_name: form["lname"].value,
-          billing_address: form["b_addr"].value,
-          billing_city: form["b_city"].value,
-          billing_state: form["b_state"].value,
-          billing_zip: form["b_zip"].value,
-          shipping_address: form["s_addr"].value,
-          shipping_city: form["s_city"].value,
-          shipping_state: form["s_state"].value,
-          shipping_zip: form["s_zip"].value,
-      };
-
-      var data = new FormData();
-      data.append( "json", JSON.stringify( payload ) );
-
-      fetch("http://localhost:3000/customer/signup",
-      {
-          method: "POST",
-          body: data
-      })
-      .then(function(res){ return res.json(); })
-      .then(function(data){ alert( JSON.stringify( data["customer"]) ) })
-
-			fetch("http://localhost:3000/customer/signup").then(res => (console.log(res)))
-		} 
-		form.addEventListener('submit', handleForm);
 	</script>
 
 	<style>

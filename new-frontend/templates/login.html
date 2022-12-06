@@ -14,7 +14,7 @@
 <body>
     
 	  <div class="login-form">
-		<form id="login-form">
+		<form id="login-form" action="/login/go">
 		  <h1>KStores</h1>
 		  <h2>Login</h1>
 		  <div class="content">
@@ -33,31 +33,6 @@
 	  </div>
 
 	<p id="paragraph"></p>
-
-	<script>
-		var form = document.getElementById("register-form")
-		function handleForm(event) { 
-			event.preventDefault(); 
-      var payload = {
-          email: form["email"].value,
-          password: form["password"].value
-      };
-
-      var data = new FormData();
-      data.append( "json", JSON.stringify( payload ) );
-
-      fetch("http://localhost:3000/customer/signin",
-      {
-          method: "POST",
-          body: data
-      })
-      .then(function(res){ return res.json(); })
-      .then(function(data){ alert( JSON.stringify( data["customer"]) ) })
-
-			fetch("http://localhost:3000/customer/signup").then(res => (console.log(res)))
-		} 
-		form.addEventListener('submit', handleForm);
-	</script>
 
 	<style>
 * {

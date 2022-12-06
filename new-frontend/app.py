@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, make_response
+from flask import Flask, render_template, request, send_file, make_response, redirect
 import requests
 import json
 import os
@@ -10,17 +10,60 @@ app = Flask(__name__)
 def login():
     return render_template('login.html')
 
-@app.route("/login/go", methods= ['POST'])
+
+@app.route("/login/go", methods=['GET', 'POST'])
 def loginAction():
-    user = request.form['email']
-    password = request.form['password']
-    r = requests.get("http://localhost:3000/customer/signin", data={"email": user, "password": password})
-    resp = make_response()
-    
+    user = request.args.get('email')
+    password = request.args.get('password')
+    r = requests.get("http://localhost:3000/customer/signin",
+                     data={"email": user, "password": password})
+    data = json.loads(r.text)
+    if data['valid']:
+        resp = make_response(redirect('/catalog'))
+        r = requests.get("http://localhost:3000/customer/signin",
+                         data={"email": user, "password": password})
+        resp.set_cookie('UserID', '1')
+        return resp
+    else:
+        return redirect('/login')
+
+
+@app.route("/signout", methods=['GET'])
+def logout():
+    resp = make_response(redirect('/login'))
+    resp.set_cookie('UserID', '', expires=0)
+    return resp
+
 
 @app.route("/register")
 def register():
     return render_template('register.html')
+
+
+@app.route('/register/go')
+def registerAction():
+    user = {
+        "email": request.args.get('email'),
+        "password": request.args.get('password'),
+        "first_name": request.args.get('fname'),
+        "middle_name": request.args.get('mname'),
+        "last_name": request.args.get('lname'),
+        "phone_number": request.args.get('phone'),
+        "shipping_street": request.args.get('s_addr'),
+        "shipping_city": request.args.get('s_city'),
+        "shipping_state": request.args.get('s_state'),
+        "shipping_zip": request.args.get('s_zip'),
+        "billing_street": request.args.get('b_addr'),
+        "billing_city": request.args.get('b_city'),
+        "billing_state": request.args.get('b_state'),
+        "billing_zip": request.args.get('b_zip')
+    }
+    r = requests.post("http://localhost:3000/customer/signup", data=user)
+    print(r.text)
+    customer = json.loads(r.text)
+    resp = make_response(redirect('/catalog'))
+    resp.set_cookie('UserID', customer['customer'])
+    return resp
 
 
 @app.route("/account/orders")
@@ -32,14 +75,23 @@ def orders():
 
 @app.route("/account/settings")
 def settings():
-    r = requests.get("http://localhost:3000/customer/get", data={"customer": 1})
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
+    r = requests.get("http://localhost:3000/customer/get",
+                     data={"customer": customerID})
     customer = json.loads(r.text)
+    print(customer)
     return render_template('account_settings.html', customer=customer)
 
 
 @app.route("/")
 @app.route("/catalog")
 def catalog():
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
+
     search_data = {
         "name": request.args.get('search'),
         "color": request.args.get('color'),
@@ -57,7 +109,8 @@ def catalog():
 def item():
     selected_variant = request.args.get('variant_id', type=int)
     item_id = request.args.get('item_id')
-    r = requests.get("http://localhost:3000/catalog/get", data={"customer": 1, 'item': item_id, 'variant': selected_variant})
+    r = requests.get("http://localhost:3000/catalog/get",
+                     data={"customer": 1, 'item': item_id, 'variant': selected_variant})
     item_info = json.loads(r.text)
     return render_template('item.html', item=item_info, selected_variant=selected_variant)
 
