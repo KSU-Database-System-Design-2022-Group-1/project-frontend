@@ -5,6 +5,9 @@ import os
 
 app = Flask(__name__)
 
+states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS',
+          'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
+
 
 @app.route("/login")
 def login():
@@ -84,8 +87,47 @@ def settings():
     r = requests.get("http://localhost:3000/customer/get",
                      data={"customer": customerID})
     customer = json.loads(r.text)
-    print(customer)
-    return render_template('account_settings.html', customer=customer)
+    return render_template('account_settings.html', customer=customer, states=states)
+
+
+@app.route('/account/update')
+def update():
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
+    user = {
+        "customer": str(customerID),
+        "email": request.args.get('email'),
+        "password": request.args.get('password'),
+        "first_name": request.args.get('fname'),
+        "middle_name": request.args.get('mname'),
+        "last_name": request.args.get('lname'),
+        "phone_number": request.args.get('phone'),
+    }
+
+    shipping = {
+        "customer": customerID,
+        "type": "shipping",
+        "street": request.args.get('s_addr'),
+        "city": request.args.get('s_city'),
+        "state": request.args.get('s_state'),
+        "zip": request.args.get('s_zip'),
+    }
+
+    billing = {
+        "customer": customerID,
+        "type": "billing",
+        "street": request.args.get('b_addr'),
+        "city": request.args.get('b_city'),
+        "state": request.args.get('b_state'),
+        "zip": request.args.get('b_zip')
+    }
+    print(billing)
+    print(shipping)
+    print(requests.post("http://localhost:3000/address/edit", data=shipping).text)
+    print(requests.post("http://localhost:3000/address/edit", data=billing).text)
+    print(requests.post("http://localhost:3000/customer/edit", data=user).text)
+    return redirect('/account/settings')
 
 
 @app.route("/")
@@ -143,17 +185,17 @@ def image():
         r = requests.get("http://localhost:3000/image/get", data=data)
     except:
         r = requests.get("http://localhost:3000/image/get", data={'image': 1})
-    
+
     # if not os.path.exists("./images"):
     #     os.mkdir(f'./images/')
     # with open(f'./images/{request.args.get("image_id")}.jpg', 'wb') as f:
     #     f.write(r.content)
-    
+
     # TODO: i don't actually know if this is the right way. but it works.
     resp = make_response(r.content, 200)
     resp.headers['Content-Type'] = r.headers['Content-Type']
     resp.headers['Content-Length'] = r.headers['Content-Length']
-    
+
     return resp
 
 
