@@ -54,7 +54,7 @@
                 class="form-control"
                 placeholder="Search"
                 name="searchBar"
-                value="{{search_data['name']|e}}"
+                value="{{search_data['name'] or ''|e}}"
               />
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
@@ -168,7 +168,7 @@
                 <label>Price Range</label>
                 <div class="radio" style="position: relative; left: 25px">
                   <input type="radio" name="shop-filter__price" id="shop-filter-price_0" value="0"
-                    {% if search_data['minprice'] and search_data['minprice'] <= 0 and search_data['maxprice'] and search_data['maxprice'] >= 1000 %}checked{% endif %}
+                    {% if (search_data['minprice'] is none or search_data['minprice'] <= 0) and (search_data['maxprice'] is none or search_data['maxprice'] >= 1000) %}checked{% endif %}
                   />
                   <label for="shop-filter-price_0">All</label>
                 </div>
