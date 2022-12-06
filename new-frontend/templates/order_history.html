@@ -97,21 +97,22 @@
                 <thead>
                   <tr class="active-row">
                     <th style="padding: 7px">Order #</th>
-                    <th style="padding: 7px">Status</th>
                     <th style="padding: 7px">Total</th>
+                    \
+                    <th style="padding: 7px">Status</th>
                     <th style="padding: 7px">Created</th>
                   </tr>
                 </thead>
                 <tbody class="table-body">
                   {% for order in orders %}
                   <tr class="cell-1">
-                    <td style="padding: 7px">{{order["order"]}}</td>
+                    <td style="padding: 7px">{{order['id']['order']}}</td>
+                    <td style="padding: 7px">${{order["price"]}}</td>
                     <td style="padding: 7px">
                       <span class="badge badge-success"
                         >{{order["status"]}}</span
                       >
                     </td>
-                    <td style="padding: 7px">${{order["price"]}}</td>
                     <td style="padding: 7px">{{order["timestamp"]}}</td>
                   </tr>
                   {% endfor %}

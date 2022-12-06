@@ -117,7 +117,7 @@
                             <dt>Total Weight: </dt>
                             <dd class="text-right text-dark b ml-3"><strong>{{cart_info["weight"]}} Lbs.</strong></dd>
                         </dl>
-                        <hr> <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="margin-bottom:10px"> Place Order </a> <a href="/catalog" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
+                        <hr> <button onclick='placeOrder()' class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="margin-bottom:10px"> Place Order </button> <a href="/catalog" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
                     </div>
                 </div>
             </aside>
@@ -135,6 +135,12 @@
     function changeQuantity(item, variant) {
         let quantity = document.getElementById(`${item}-${variant}`).value;
         window.location.href = `/catalog/item/add?item=${item}&variant=${variant}&quantity=${quantity}`
+    }
+
+    function placeOrder() {
+        if({{cart_info['count']}} > 0) {
+            window.location.href = '/cart/order'
+        }
     }
 </script>
 </body>

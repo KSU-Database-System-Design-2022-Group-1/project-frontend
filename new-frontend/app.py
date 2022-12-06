@@ -189,6 +189,16 @@ def cart():
     return render_template('cart.html', cart=cart, cart_info=cart_info)
 
 
+@app.route('/cart/order')
+def order():
+    customerID = request.cookies.get('UserID')
+    if customerID == None:
+        return redirect('/login')
+    requests.post('http://localhost:3000/cart/checkout',
+                  data={'customer': customerID})
+    return redirect('/account/orders')
+
+
 @ app.route("/catalog/item/image")
 def image():
     data = {'image': request.args.get("image_id")}
