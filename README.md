@@ -1,14 +1,28 @@
 # KStore Frontend
+
 ## Launching
-The front end is served using a Node.JS server.  
-To launch said Node server, run:  
+
+The front end is served using a Flask server.  
+To launch said Flask server, run:
+
 ```
-npm install
-npm run start
+cd new-frontend
+flask run
 ```
 
-e Python dependencies for the local server using `python -m pip install -r requirements.txt`. Once you do this once, you won't have to do it again until the `requirements.txt` file is changed.
-1. In a terminal, run the command `./runDatabase.sh`. This will initialize and run the MySQL server for as long as the window is open.
-	- It might also ask for some additional setup before running! Watch for green text and non-zero exits. You might need to supply the path you downloaded MariaDB to in the `.mariadb_path` file.
-	- If everything goes well, the script will print `Running MySQL Server at port <PORT>! Press Ctrl+C in terminal to stop.` and it will start listening for connections.
-1. In another terminal, run `python main.py`. This will communicate with MySQL and 
+The site will then be accessible at the address http://localhost:5000
+
+## Dependencies
+
+To install dependencies, run the following:
+
+```
+cd new-frontend
+python -m pip install -r requirements.txt
+```
+
+## Backend connection
+
+The Flask API server must be running, as well as MariaDB hosting the `kstores` database
+
+For further details, please see the project-backend repository (https://github.com/KSU-Database-System-Design-2022-Group-1/project-backend)
