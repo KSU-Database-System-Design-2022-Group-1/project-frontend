@@ -113,31 +113,31 @@
             {% for variant in item["variants"] %}
               {% if variant["id"]["variant"] == selected_variant %}
                 <option value="{{variant["id"]["variant"]}}" selected>
-                  {{variant["color"]}}, {{variant["size"]}} - ${{variant["price"]}}
-                </option>
               {% else %}
                 <option value="{{variant["id"]["variant"]}}">
-                  {{variant["color"]}}, {{variant["size"]}} - ${{variant["price"]}}
-                </option>
               {% endif %}
+                  {{variant["color"]}}, {{variant["size"]}} - ${{variant["price"]}} {% if variant['stock'] < 1 %}(Out of Stock){% endif %}
+                </option>
             {% endfor %}
           </select>
 
           <hr />
           <h3>Quantity<br /></h3>
           <select id="Quantity">
-            {%for x in range(1, 10)%}
+            {%for x in range(1, item['variants'][selected_variant]['stock'] + 1)%}
             <option>{{x}}</option>
             {% endfor %}
           </select>
           <hr />
         </div>
 
-       
-
         <!-- Product Pricing -->
         <div class="product-price">
-          <button class="cart-btn" onclick="addToCart();">Add to cart</a>
+          {% if item['variants'][selected_variant]['stock'] > 0 %}
+          <button class="cart-btn" onclick="addToCart();">Add to cart</button>
+          {% else %}
+          <button class="cart-btn" disabled>Out of Stock</button>
+          {% endif %}
         </div>
       </div>
     </main>
