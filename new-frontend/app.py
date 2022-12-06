@@ -132,13 +132,18 @@ def image():
         r = requests.get("http://localhost:3000/image/get", data=data)
     except:
         r = requests.get("http://localhost:3000/image/get", data={'image': 1})
-    try:
-        os.mkdir(f'./images/')
-    except:
-        print("dir already exists")
-    with open(f'./images/{request.args.get("image_id")}.jpg', 'wb') as f:
-        f.write(r.content)
-    return send_file(f'./images/{request.args.get("image_id")}.jpg', mimetype="image/jpeg")
+    
+    # if not os.path.exists("./images"):
+    #     os.mkdir(f'./images/')
+    # with open(f'./images/{request.args.get("image_id")}.jpg', 'wb') as f:
+    #     f.write(r.content)
+    
+    # TODO: i don't actually know if this is the right way. but it works.
+    resp = make_response(r.content, 200)
+    resp.headers['Content-Type'] = r.headers['Content-Type']
+    resp.headers['Content-Length'] = r.headers['Content-Length']
+    
+    return resp
 
 
 if __name__ == '__main__':
