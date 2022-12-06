@@ -123,11 +123,15 @@
 
           <hr />
           <h3>Quantity<br /></h3>
+          {% if item['variants'][selected_variant]['stock'] > 0 %}
           <select id="Quantity">
             {%for x in range(1, item['variants'][selected_variant]['stock'] + 1)%}
             <option>{{x}}</option>
             {% endfor %}
           </select>
+          {% else %}
+          <p>Out of Stock</p>
+          {% endif %}
           <hr />
         </div>
 
@@ -308,6 +312,11 @@
     }
     .cart-btn:hover {
       background-color: #64af3d;
+    }
+    
+    .cart-btn:disabled {
+      filter: grayscale();
+      cursor: not-allowed;
     }
   </style>
 </html>

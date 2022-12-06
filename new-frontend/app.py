@@ -139,13 +139,13 @@ def catalog():
         "name": request.args.get('search'),
         "color": request.args.get('color'),
         "size": request.args.get('size'),
-        "minprice": request.args.get('price_min'),
-        "maxprice": request.args.get('price_max'),
+        "minprice": request.args.get('price_min', type=int),
+        "maxprice": request.args.get('price_max', type=int),
         "category": request.args.get('category')
     }
     r = requests.get("http://localhost:3000/catalog/search", data=search_data)
     items = json.loads(r.text)["items"]
-    return render_template('catalog.html', items=items)
+    return render_template('catalog.html', items=items, search_data=search_data)
 
 
 @app.route("/catalog/item")

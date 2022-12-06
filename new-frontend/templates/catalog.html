@@ -54,6 +54,7 @@
                 class="form-control"
                 placeholder="Search"
                 name="searchBar"
+                value="{{search_data['name']|e}}"
               />
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
@@ -95,24 +96,13 @@
           <header class="panel-heading">Filter</header>
           <div class="panel-body">
             <form role="form product-form" id="filter_form">
-              <!-- <div class="form-group">
-                        <label>Brand</label>
-                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                            <option>Wallmart</option>
-                            <option>Catseye</option>
-                            <option>Moonsoon</option>
-                            <option>Textmart</option>
-                        </select>
-                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Wallmart</span></span>
-                    </div> -->
               <div class="form-group">
                 <label>Category</label>
                 <select
                   class="form-control hasCustomSelect"
                   style="
                     -webkit-appearance: menulist-button;
-                    width: 231px;
-                    position: absolute;
+                    max-width: 231px;
                     opacity: 100;
                     height: 34px;
                     font-size: 12px;
@@ -120,24 +110,15 @@
                   name="category"
                 >
                   <option value="">All</option>
-                  <option value="shirts">Shirts</option>
-                  <option value="pants">Pants</option>
-                  <option value="socks">Socks</option>
-                  <option value="shoes">Shoes</option>
-                  <option value="hats">Hats</option>
-                  <option value="bags">Bags & Purses</option>
-                  <option value="coats">Coats & Jackets</option>
-                  <option value="jewellery">Jewellery</option>
+                  <option value="shirts" {% if search_data['category'] == "shirts" %}selected{% endif %}>Shirts</option>
+                  <option value="pants" {% if search_data['category'] == "pants" %}selected{% endif %}>Pants</option>
+                  <option value="socks" {% if search_data['category'] == "socks" %}selected{% endif %}>Socks</option>
+                  <option value="shoes" {% if search_data['category'] == "shoes" %}selected{% endif %}>Shoes</option>
+                  <option value="hats" {% if search_data['category'] == "hats" %}selected{% endif %}>Hats</option>
+                  <option value="bags" {% if search_data['category'] == "bags" %}selected{% endif %}>Bags & Purses</option>
+                  <option value="coats" {% if search_data['category'] == "coats" %}selected{% endif %}>Coats & Jackets</option>
+                  <option value="jewelery" {% if search_data['category'] == "jewelery" %}selected{% endif %}>Jewelery</option>
                 </select>
-                <span
-                  class="customSelect form-control"
-                  style="display: inline-block"
-                  ><span
-                    class="customSelectInner"
-                    style="width: 209px; display: inline-block"
-                    >White</span
-                  ></span
-                >
               </div>
               <div class="form-group">
                 <label>Color</label>
@@ -145,8 +126,7 @@
                   class="form-control hasCustomSelect"
                   style="
                     -webkit-appearance: menulist-button;
-                    width: 231px;
-                    position: absolute;
+                    max-width: 231px;
                     opacity: 100;
                     height: 34px;
                     font-size: 12px;
@@ -154,21 +134,12 @@
                   name="color"
                 >
                   <option value="">All</option>
-                  <option value="white">White</option>
-                  <option value="black">Black</option>
-                  <option value="red">Red</option>
-                  <option value="blue">Blue</option>
-                  <option value="gold">Gold</option>
+                  <option value="white" {% if search_data['color'] == "white" %}selected{% endif %}>White</option>
+                  <option value="black" {% if search_data['color'] == "black" %}selected{% endif %}>Black</option>
+                  <option value="blue" {% if search_data['color'] == "blue" %}selected{% endif %}>Blue</option>
+                  <option value="navy blue" {% if search_data['color'] == "navy blue" %}selected{% endif %}>Navy Blue</option>
+                  <option value="kent gold" {% if search_data['color'] == "kent gold" %}selected{% endif %}>Kent Gold</option>
                 </select>
-                <span
-                  class="customSelect form-control"
-                  style="display: inline-block"
-                  ><span
-                    class="customSelectInner"
-                    style="width: 209px; display: inline-block"
-                    >White</span
-                  ></span
-                >
               </div>
               <div class="form-group">
                 <label>Size</label>
@@ -176,8 +147,7 @@
                   class="form-control hasCustomSelect"
                   style="
                     -webkit-appearance: menulist-button;
-                    width: 231px;
-                    position: absolute;
+                    max-width: 231px;
                     opacity: 100;
                     height: 34px;
                     font-size: 12px;
@@ -185,59 +155,38 @@
                   name="size"
                 >
                   <option value="">All</option>
-                  <option value="none">None</option>
-                  <option value="s">Small</option>
-                  <option value="m">Medium</option>
-                  <option value="l">Large</option>
-                  <option value="xl">Extra Large</option>
+                  <option value="N/A" {% if search_data['size'] == "N/A" %}selected{% endif %}>N/A</option>
+                  <option value="XS" {% if search_data['size'] == "XS" %}selected{% endif %}>Extra Small</option>
+                  <option value="S" {% if search_data['size'] == "S" %}selected{% endif %}>Small</option>
+                  <option value="M" {% if search_data['size'] == "M" %}selected{% endif %}>Medium</option>
+                  <option value="L" {% if search_data['size'] == "L" %}selected{% endif %}>Large</option>
+                  <option value="XL" {% if search_data['size'] == "XL" %}selected{% endif %}>Extra Large</option>
                 </select>
-                <span
-                  class="customSelect form-control"
-                  style="display: inline-block"
-                  ><span
-                    class="customSelectInner"
-                    style="width: 209px; display: inline-block"
-                    >Small</span
-                  ></span
-                >
               </div>
 
               <div class="form-group">
                 <label>Price Range</label>
                 <div class="radio" style="position: relative; left: 25px">
-                  <input
-                    type="radio"
-                    name="shop-filter__price"
-                    id="shop-filter-price_0"
-                    value="0"
-                    checked=""
+                  <input type="radio" name="shop-filter__price" id="shop-filter-price_0" value="0"
+                    {% if search_data['minprice'] and search_data['minprice'] <= 0 and search_data['maxprice'] and search_data['maxprice'] >= 1000 %}checked{% endif %}
                   />
                   <label for="shop-filter-price_0">All</label>
                 </div>
                 <div class="radio" style="position: relative; left: 25px">
-                  <input
-                    type="radio"
-                    name="shop-filter__price"
-                    id="shop-filter-price_1"
-                    value="1"
+                  <input type="radio" name="shop-filter__price" id="shop-filter-price_1" value="1"
+                  {% if search_data['minprice'] and search_data['minprice'] == 0 and search_data['maxprice'] and search_data['maxprice'] == 25 %}checked{% endif %}
                   />
                   <label for="shop-filter-price_1">Under $25</label>
                 </div>
                 <div class="radio" style="position: relative; left: 25px">
-                  <input
-                    type="radio"
-                    name="shop-filter__price"
-                    id="shop-filter-price_2"
-                    value="2"
+                  <input type="radio" name="shop-filter__price" id="shop-filter-price_2" value="2"
+                  {% if search_data['minprice'] and search_data['minprice'] == 25 and search_data['maxprice'] and search_data['maxprice'] == 50 %}checked{% endif %}
                   />
                   <label for="shop-filter-price_2">$25 to $50</label>
                 </div>
                 <div class="radio" style="position: relative; left: 25px">
-                  <input
-                    type="radio"
-                    name="shop-filter__price"
-                    id="shop-filter-price_3"
-                    value="3"
+                  <input type="radio" name="shop-filter__price" id="shop-filter-price_3" value="3"
+                  {% if search_data['minprice'] and search_data['minprice'] == 50 and search_data['maxprice'] and search_data['maxprice'] == 100 %}checked{% endif %}
                   />
                   <label for="shop-filter-price_3">$50 to $100</label>
                 </div>
@@ -247,6 +196,7 @@
                     name="shop-filter__price"
                     id="shop-filter-price_4"
                     value="specify"
+                    {% if search_data['minprice'] not in [0, 25, 50, None] or (search_data['maxprice'] not in [25, 50, 100, None] and search_data['maxprice'] < 1000) %}checked{% endif %}
                   />
                   <label for="shop-filter-price_4">Other (specify)</label>
                 </div>
@@ -264,6 +214,7 @@
                         class="form-control"
                         placeholder="From"
                         style="width: 80px"
+                        {% if search_data['minprice'] not in [0, 25, 50, None] %}value = {{ search_data['minprice'] }}{% endif %}
                       />
                     </div>
                     <div class="col-xs-4">
@@ -275,6 +226,7 @@
                         class="form-control"
                         placeholder="To"
                         style="width: 80px"
+                        {% if search_data['maxprice'] not in [25, 50, 100, None] and search_data['maxprice'] < 1000 %}value = {{ search_data['maxprice'] }}{% endif %}
                       />
                     </div>
                   </div>
